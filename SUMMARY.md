@@ -6,6 +6,7 @@
 * [lol](lol.md)
 * [Inca o pagina](inca-o-pagina.md)
 * [contributing](contributing.md)
+* [Issues 1-25](test.md)
 
 ## Methods
 
@@ -14,3 +15,4 @@
 ## Issues
 
 * [All issues](all.md)
+

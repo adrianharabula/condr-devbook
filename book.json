@@ -5,12 +5,9 @@
     "pluginsConfig": {
         "theme-api": {
             "theme": "dark"
-        },
-        "fontSettings": {
-            "size": 3
         }
     },
     "pdf": {
-        "fontSize": 18
+        "fontSize": 16
     }
 }

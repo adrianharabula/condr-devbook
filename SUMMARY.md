@@ -2,11 +2,31 @@
 
 ## Overview
 
-* [My Awesome API](README.md)
-* [lol](lol.md)
-* [Inca o pagina](inca-o-pagina.md)
-* [contributing](contributing.md)
+* [Introduction](README.md)
+* [Authors](inca-o-pagina.md)
+* [Contributing](contributing.md)
 
+## Method
+  * working with code
+  * standards
+
+## App
+
+  ## Database
+
+  * Oracle 11g
+  * Database Schema
+  * One to Many Relationships
+  * Many to Many Relationships
+  * Many to Many Polymorphic Relationships
+
+  ## Backend
+  * [URL Routing](routes.md)
+
+  ## Server
+
+  * Docker containers
+  * Automatic deployment
 
 ## Methods
 
@@ -15,5 +35,3 @@
 ## Issues
 
 * [Issues 1-25](1-25.md)
-
-

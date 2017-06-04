@@ -118,24 +118,24 @@ Este aceeaşi licenţă sub care sunt publicate sursele frameworkului Laravel.
 > state: **closed** opened by: **adrianharabula** on: **4/11/2017**
 
 Ne-am putea inspira din scriptul create_user.sql de la lab1 psgbd
-&#x60;&#x60;&#x60;
+```
 DROP TABLESPACE aplicatie INCLUDING CONTENTS CASCADE CONSTRAINTS; 
 
 CREATE TABLESPACE aplicatie
-  DATAFILE &#x27;tbs_perm_0001.dat&#x27; 
+  DATAFILE 'tbs_perm_0001.dat' 
     SIZE 500M
     REUSE
     AUTOEXTEND ON NEXT 50M MAXSIZE 2000M
 /
     
 CREATE TEMPORARY TABLESPACE aplicatie
-  TEMPFILE &#x27;tbs_temp_0001.dbf&#x27;
+  TEMPFILE 'tbs_temp_0001.dbf'
     SIZE 5M
     AUTOEXTEND ON
 /    
 
 CREATE UNDO TABLESPACE aplicatie
-  DATAFILE &#x27;tbs_undo_0001.dbf&#x27;
+  DATAFILE 'tbs_undo_0001.dbf'
     SIZE 5M 
     AUTOEXTEND ON
   RETENTION GUARANTEE
@@ -149,7 +149,7 @@ alter user student default tablespace aplicatie quota 1990M on aplicatie;
 grant connect to student;
 grant all privileges to student;
 
-&#x60;&#x60;&#x60;
+```
 
 ### Comments
 
@@ -204,28 +204,28 @@ Problema #14 legată de instanța curentă a serverului.
 Vom muta aplicația pe un server separat. Avem la dispoziție următoarele mașini:
 
 Hicoria VPS (8$ / lună, plata săptămânal)
-&#x60;&#x60;&#x60;
+```
 Basic information
 cpu CPU: 2x XEON E7 ram RAM: 4096 MB DDR3, 1333 - 1600 MHz
 hdd SSD: 35 GB SAS SATA3 ipv4 IPv4: 1x
 backupHdd HDD for backups: 0 GB
 Ubuntu 16.04 x64
-&#x60;&#x60;&#x60;
+```
 
 Linode VPS (5$ / lună)
-&#x60;&#x60;&#x60;
+```
 Linode 1024
 20GB Storage
 1 CPU Core
 1TB XFER
 $5/mo or (.0075/hr)
 Ubuntu 16.04 LTS x64
-&#x60;&#x60;&#x60;
+```
 
 Digitalocean VPS (5$ / lună)
-&#x60;&#x60;&#x60;
+```
 512 MB Memory / 20 GB Disk + 14 GB / FRA1 - Ubuntu 16.04.1 x64
-&#x60;&#x60;&#x60;
+```
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/11#issuecomment-295866423) on: **4/20/2017**
 
@@ -263,7 +263,7 @@ This section of the standard comprises what should be considered the standard co
 
 Overview
 
-- Files MUST use only &lt;?php and &lt;?&#x3D; tags.
+- Files MUST use only <?php and <?= tags.
 - Files MUST use only UTF-8 without BOM for PHP code.
 - Files SHOULD either declare symbols (classes, functions, constants, etc.) or cause side-effects (e.g. generate output, change .ini settings, etc.) but SHOULD NOT do both.
 - Namespaces and classes MUST follow an “autoloading” PSR: [PSR-0, PSR-4].
@@ -315,15 +315,15 @@ La accesarea endpointului se poate face pull pe un repo, mai trebuie integrat î
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/15#issuecomment-294988870) on: **4/19/2017**
 
 Comanda cu care se rulează webhookul:
-&#x60;&#x60;&#x60;
+```
 docker run -d -p 9000:9000 \
 -v /root/webhook/hooks.json:/etc/webhook/hooks.json \
 -v /root/webhook/pull.sh:/var/scripts/pull.sh \
 -v /root/webhook/.ssh:/root/.ssh \
 -v /root/condr:/root/condr
---name&#x3D;webhook adrianharabula/webhook
--verbose -hooks&#x3D;/etc/webhook/hooks.json -hotreload
-&#x60;&#x60;&#x60;
+--name=webhook adrianharabula/webhook
+-verbose -hooks=/etc/webhook/hooks.json -hotreload
+```
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/15#issuecomment-295147312) on: **4/19/2017**
 
@@ -366,16 +366,16 @@ Nu e momentul potrivit acum, vom redeschide mai târziu.
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/17#issuecomment-295148395) on: **4/19/2017**
 
 Creăm o nouă imagine oracle-Dockerfile:
-&#x60;&#x60;&#x60;
+```
 FROM wnameless/oracle-xe-11g
 
 ADD database_design/psgbd-etapa2/SqlScripts/00-init.sql /docker-entrypoint-initdb.d/
 ADD database_design/psgbd-etapa2/SqlScripts/01-createTables.sql /docker-entrypoint-initdb.d/
-&#x60;&#x60;&#x60;
+```
 
 Și o folosim în docker-compose.yml:
-&#x60;&#x60;&#x60;
-version: &#x27;3&#x27;
+```
+version: '3'
 
 services:
    oracledb:
@@ -385,11 +385,11 @@ services:
      image: condr/databse
      restart: always
      ports:
-      - &quot;1521:1521&quot;
+      - "1521:1521"
 
 volumes:
 
-&#x60;&#x60;&#x60;
+```
 
 Când se va instanția pentru prima dată baza de date, se vor executa scripturile adăugate.
 ---
@@ -508,12 +508,12 @@ Dacă mai aveți modificări la baza de date ele se adaugă astfel:
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/22#issuecomment-295730368) on: **4/20/2017**
 
 avem __pre-commit__ hook:
-&#x60;&#x60;&#x60;
+```
 #!/bin/sh
 cd Dockerfiles/oracledb/sqlscripts
-cat [0-9][0-9]*.sql &gt; sqlconcat.sql
+cat [0-9][0-9]*.sql > sqlconcat.sql
 git add sqlconcat.sql
-&#x60;&#x60;&#x60;
+```
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/22#issuecomment-295736886) on: **4/20/2017**
 
@@ -555,24 +555,24 @@ sql autogenerat, permanent actualizat este acum disponibil la adresa [webhooks.c
 > state: **closed** opened by: **adrianharabula** on: **4/20/2017**
 
 De populat baza de date cu date test:
-&#x60;&#x60;&#x60;
-INSERT INTO GROUPS VALUES (1,&#x27;FII@Iasi&#x27;,&#x27;This is where your sleepless nights begin!&#x27;);
-INSERT INTO GROUPS VALUES (2,&#x27;Food Lovers&#x27;,&#x27;Life has never tasted so good! Join us for the best recipes!&#x27;);
-INSERT INTO GROUPS VALUES (3,&#x27;PSGBD&#x27;,&#x27;Never ask a DBA to move furniture, they are known for dropping tables. :)&#x27;);
-INSERT INTO GROUPS VALUES (4,&#x27;Web Technologies&#x27;,&#x27;I know I am going to heaven, cause I am already in hell! *web dev life*&#x27;);
-INSERT INTO GROUPS VALUES (5,&#x27;Software Engeneering&#x27;,&#x27;We will teach you how to work in a company!&#x27;);
-INSERT INTO GROUPS VALUES (6,&#x27;Cat Lovers&#x27;,&#x27;Meow&#x27;);
-INSERT INTO GROUPS VALUES (7,&#x27;Science&#x27;,&#x27;&quot;Come on, it is not like it is rocket science, they tell me..&quot;&#x27;);
-INSERT INTO GROUPS VALUES (8,&#x27;Education&#x27;,&#x27;Your future starts today!&#x27;);
-INSERT INTO GROUPS VALUES (9,&#x27;Highschool&#x27;,&#x27;Well, we still got time to do stupid thing...&#x27;);
-INSERT INTO GROUPS VALUES (10,&#x27;Clothes Lovers&#x27;,&#x27;&#x27;);
-INSERT INTO GROUPS VALUES (11,&#x27;Fashion&#x27;,&#x27;&#x27;);
-INSERT INTO GROUPS VALUES (12,&#x27;Daily Entertainment&#x27;,&#x27;&#x27;);
-INSERT INTO GROUPS VALUES (13,&#x27;Story of my life&#x27;,&#x27;*Dont even need a description*&#x27;);
-INSERT INTO GROUPS VALUES (14,&#x27;IFL Science&#x27;,&#x27;&#x27;);
-INSERT INTO GROUPS VALUES (15,&#x27;Football Lovers&#x27;,&#x27;&#x27;);
-INSERT INTO GROUPS VALUES (16,&#x27;PC Garage&#x27;,&#x27;&#x27;);
-&#x60;&#x60;&#x60;
+```
+INSERT INTO GROUPS VALUES (1,'FII@Iasi','This is where your sleepless nights begin!');
+INSERT INTO GROUPS VALUES (2,'Food Lovers','Life has never tasted so good! Join us for the best recipes!');
+INSERT INTO GROUPS VALUES (3,'PSGBD','Never ask a DBA to move furniture, they are known for dropping tables. :)');
+INSERT INTO GROUPS VALUES (4,'Web Technologies','I know I am going to heaven, cause I am already in hell! *web dev life*');
+INSERT INTO GROUPS VALUES (5,'Software Engeneering','We will teach you how to work in a company!');
+INSERT INTO GROUPS VALUES (6,'Cat Lovers','Meow');
+INSERT INTO GROUPS VALUES (7,'Science','"Come on, it is not like it is rocket science, they tell me.."');
+INSERT INTO GROUPS VALUES (8,'Education','Your future starts today!');
+INSERT INTO GROUPS VALUES (9,'Highschool','Well, we still got time to do stupid thing...');
+INSERT INTO GROUPS VALUES (10,'Clothes Lovers','');
+INSERT INTO GROUPS VALUES (11,'Fashion','');
+INSERT INTO GROUPS VALUES (12,'Daily Entertainment','');
+INSERT INTO GROUPS VALUES (13,'Story of my life','*Dont even need a description*');
+INSERT INTO GROUPS VALUES (14,'IFL Science','');
+INSERT INTO GROUPS VALUES (15,'Football Lovers','');
+INSERT INTO GROUPS VALUES (16,'PC Garage','');
+```
 
 ### Comments
 
@@ -582,7 +582,7 @@ INSERT INTO GROUPS VALUES (16,&#x27;PC Garage&#x27;,&#x27;&#x27;);
 
 - [x] copy _database_design/psgbd-etapa2/Config/Config.php.example_ to __Config.php__ and complete with valid database credentials
 - [x] copy _Dockerfiles/apache-virtualhosts/100-condr.conf.example_ to __100-condr.conf__ and complete with valid detailș files __100-condr.conf must exist__.
-- [x] add git deploy key for webhook; &#x60;cp ~/.ssh/id_rsa ~/.ssh/known_hosts Dockerfiles/git-webhook/webhook/.ssh/&#x60;
+- [x] add git deploy key for webhook; `cp ~/.ssh/id_rsa ~/.ssh/known_hosts Dockerfiles/git-webhook/webhook/.ssh/`
 
 
 ### Comments
@@ -623,7 +623,7 @@ Fixed!
 
 ### Comments
 
-# [&quot;Let&#x27;s get started&quot; button from home page goes nowhere when logged](https://github.com/adrianharabula/condr/issues/30)
+# ["Let's get started" button from home page goes nowhere when logged](https://github.com/adrianharabula/condr/issues/30)
 
 > state: **closed** opened by: **elis47** on: **4/22/2017**
 
@@ -642,8 +642,8 @@ Dacă ești logat, ce am putea afișa pe prima pagină?
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/30#issuecomment-296519539) on: **4/24/2017**
 
-Butonul let&#x27;s get started duce pe pagina produse. Dacă nu este în regulă se poate redeschide issueul.
-# [Contact form doesn&#x27;t submit unless you fill in phone&amp;email; must have a sending confirmation page](https://github.com/adrianharabula/condr/issues/31)
+Butonul let's get started duce pe pagina produse. Dacă nu este în regulă se poate redeschide issueul.
+# [Contact form doesn't submit unless you fill in phone&email; must have a sending confirmation page](https://github.com/adrianharabula/condr/issues/31)
 
 > state: **closed** opened by: **elis47** on: **4/22/2017**
 
@@ -659,7 +659,7 @@ Facem ca la login :P panel dinacela.
 
 Dar închid totuși issue-ul nu e o prioritate, se poate ana la infinit. Dacă vrei să te ocupi, redeschide-l.
 
-# [&quot;Let&#x27;s get started&quot; button from About page goes nowhere when logged](https://github.com/adrianharabula/condr/issues/32)
+# ["Let's get started" button from About page goes nowhere when logged](https://github.com/adrianharabula/condr/issues/32)
 
 > state: **open** opened by: **elis47** on: **4/22/2017**
 
@@ -880,7 +880,7 @@ Remove and organize files in the repo.
 
 Some cleaning had been done.
 
-- removed api folder, as it&#x27;s no longer needed, we will use the main app to code the api
+- removed api folder, as it's no longer needed, we will use the main app to code the api
 - removed frontend parts
 - removed jekyll from docs
 - many many many other messy stuff
@@ -941,7 +941,7 @@ We used this lately, worked pretty well as a pair programming tool, the issue ca
 
 aa9b968b90d4d436725d4502314535b9d97070a4 File analytics.blade.php is versioned but on the server we use assume-unchanged to update UA Code.
 
-Also for assume-unchanged we used this great alias http://blog.bfitz.us/?p&#x3D;1811#comment-77785
+Also for assume-unchanged we used this great alias http://blog.bfitz.us/?p=1811#comment-77785
 # [Meeting #6 - Status proiect](https://github.com/adrianharabula/condr/issues/47)
 
 > state: **closed** opened by: **adrianharabula** on: **5/1/2017**
@@ -993,19 +993,19 @@ Verify the login/signup functionality.
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/48#issuecomment-299665703) on: **5/7/2017**
 
 Tabela users este creată acum după:
-&#x60;&#x60;&#x60;
-        Schema::create(&#x27;users&#x27;, function (Blueprint $table) {
-            $table-&gt;increments(&#x27;id&#x27;);
-            $table-&gt;string(&#x27;name&#x27;);
-            $table-&gt;string(&#x27;email&#x27;)-&gt;unique();
-            $table-&gt;string(&#x27;password&#x27;);
-            $table-&gt;rememberToken();
-            $table-&gt;timestamps();
+```
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
         });
-&#x60;&#x60;&#x60;
+```
 
 Față de ceea ce aveam:
-&#x60;&#x60;&#x60;
+```
 CREATE TABLE USERS
 (
   USER_ID NUMBER(10) PRIMARY KEY,
@@ -1014,7 +1014,7 @@ CREATE TABLE USERS
   EMAIL VARCHAR(40) NOT NULL
 );
 /
-&#x60;&#x60;&#x60;
+```
 
 Diferențele sunt că acum avem înloc de __user_id__ coloana __id__. Iar în loc de __username__ avem __name__. Plus avem următoare câmpuri:
 
@@ -1032,14 +1032,14 @@ Nu am zis ca username-ul va fi unic?
 Pagina [register](http://condr.me/register) nu vrea sa mearga.
 
 Primim
-&#x60;&#x60;&#x60;
+```
 Oci8Exception in Statement.php line 177:
 Error Code : 904
-Error Message : ORA-00904: &quot;ID&quot;: invalid identifier
+Error Message : ORA-00904: "ID": invalid identifier
 Position : 121
-Statement : insert into &quot;USERS&quot; (&quot;NAME&quot;, &quot;EMAIL&quot;, &quot;password&quot;, &quot;UPDATED_AT&quot;, &quot;CREATED_AT&quot;) values (:p0, :p1, :p2, :p3, :p4) returning &quot;ID&quot; into :p5
+Statement : insert into "USERS" ("NAME", "EMAIL", "password", "UPDATED_AT", "CREATED_AT") values (:p0, :p1, :p2, :p3, :p4) returning "ID" into :p5
 Bindings : [Adrian Harabula,adrian.harabula@gmail.com,$2y$10$8UXsjNro4nPIZzSTvzKQm.w3M0Zn73mnqe3q5OwdOtVzwU2Q0bLwi,2017-05-02 23:25:45,2017-05-02 23:25:45,0]
-&#x60;&#x60;&#x60;
+```
 
 ### Comments
 
@@ -1050,7 +1050,7 @@ password is reserved word in oracle; password column name needs to be changed
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/49#issuecomment-298851557) on: **5/3/2017**
 
-we don&#x27;t have timestamp columns yet, they must be deactivated
+we don't have timestamp columns yet, they must be deactivated
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/49#issuecomment-299662473) on: **5/6/2017**
 
@@ -1075,7 +1075,7 @@ http://itsolutionstuff.com/post/laravel-5-ajax-crud-with-pagination-example-and-
 
 > state: **open** opened by: **adrianharabula** on: **5/6/2017**
 
-- [ ] remove everything not needed from readme.md file, it&#x27;s too bloated
+- [ ] remove everything not needed from readme.md file, it's too bloated
 - [x] start working on documentations (database, api, app, app story)
 - [ ] put links to documentation on readme.md
 
@@ -1123,7 +1123,7 @@ Merge loginul 6029d314947157c430b1aa679dd93977a825b5c4
 
 Mai e:
  * registerul de reparat, dar chiar nu e musai
- * și de înlocuit $_SESSION[&#x27;username&#x27;] cu $_SESSION[&#x27;email&#x27;] peste tot în aplicație
+ * și de înlocuit $_SESSION['username'] cu $_SESSION['email'] peste tot în aplicație
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/54#issuecomment-300925350) on: **5/12/2017**
 
@@ -1157,26 +1157,26 @@ Se poate considera terminat. Toate migrările sunt disponibile [aici](https://gi
 Because generatorul curent e făcut ca la n00bi!
 
 Pentru generare de chestii aleatoare folosim de exemplu:
-&#x60;&#x60;&#x60;
-        DB::table(&#x27;users&#x27;)-&gt;insert([
-            &#x27;name&#x27; &#x3D;&gt; str_random(10),
-            &#x27;email&#x27; &#x3D;&gt; str_random(10).&#x27;@gmail.com&#x27;,
-            &#x27;password&#x27; &#x3D;&gt; bcrypt(&#x27;secret&#x27;),
+```
+        DB::table('users')->insert([
+            'name' => str_random(10),
+            'email' => str_random(10).'@gmail.com',
+            'password' => bcrypt('secret'),
         ]);
-&#x60;&#x60;&#x60;
+```
 Dacă vrem să aibă și un sens, atunci folosim faker:
-&#x60;&#x60;&#x60;
-$factory-&gt;define(App\User::class, function (Faker\Generator $faker) {
+```
+$factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        &#x27;name&#x27; &#x3D;&gt; $faker-&gt;name,
-        &#x27;email&#x27; &#x3D;&gt; $faker-&gt;unique()-&gt;safeEmail,
-        &#x27;password&#x27; &#x3D;&gt; $password ?: $password &#x3D; bcrypt(&#x27;secret&#x27;),
-        &#x27;remember_token&#x27; &#x3D;&gt; str_random(10),
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => $password ?: $password = bcrypt('secret'),
+        'remember_token' => str_random(10),
     ];
 });
-&#x60;&#x60;&#x60;
+```
 
 Numele, emailurile generate nu numai că vor fi aleatoare dar vor avea și sens.
 
@@ -1234,30 +1234,30 @@ Scopul e ca toată lumea să ruleze aplicația pe baza de date locală.
 Pentru genera/regenera baza de date după migrări a se citi https://laravel.com/docs/5.4/migrations#running-migrations
 
 Pe scurt, așa facem rollback la toate migrările existente(se execută funcția down() din fiecare) apoi se execută migrările(funcția up()):
-&#x60;php artisan migrate:refresh&#x60;
+`php artisan migrate:refresh`
 
 Dacă vrem să facem și populare peste baza de date refreshuită facem
-&#x60;&#x60;&#x60;bash
+```bash
 // Refresh the database and run all database seeds...
 php artisan migrate:refresh --seed
-&#x60;&#x60;&#x60;
+```
 
-Dacă sunt probleme la resetarea bazei de date, putem executa din sqldeveloper &#x60;call purgedatabase()&#x60; pentru a șterge toate tabelele, triggerele și secvențele existente, a se vedea #62 
+Dacă sunt probleme la resetarea bazei de date, putem executa din sqldeveloper `call purgedatabase()` pentru a șterge toate tabelele, triggerele și secvențele existente, a se vedea #62 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/57#issuecomment-300456946) on: **5/10/2017**
 
 Pentru a crea baza de date pentru aplicație se rulează
-&#x60;&#x60;&#x60;sqlplus system/oracle as sysdba @00-init.sql&#x60;&#x60;&#x60;
+```sqlplus system/oracle as sysdba @00-init.sql```
 
 Apoi se fac migrările. Și ar trebui să meargă!!!!!!!
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/57#issuecomment-300917885) on: **5/12/2017**
 
 Update inițializare cu tot cu funcția purge #62 
-&#x60;&#x60;&#x60;
+```
 sqlplus system/oracle as sysdba @00-init.sql
 sqlplus condr/condr @00-purgeProcedure.sql
-&#x60;&#x60;&#x60;
+```
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/57#issuecomment-300923990) on: **5/12/2017**
 
@@ -1274,13 +1274,13 @@ sqlplus condr/condr @00-purgeProcedure.sql
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/58#issuecomment-300137601) on: **5/9/2017**
 
 Progres facem și avem, așa adăugăm un user dummy, și vom putea face cu el login:
-&#x60;&#x60;&#x60;php
-        DB::table(&#x27;users&#x27;)-&gt;insert([
-            &#x27;name&#x27; &#x3D;&gt; &#x27;Adrian Harabula&#x27;,
-            &#x27;email&#x27; &#x3D;&gt; &#x27;adrian.harabula@gmail.com&#x27;,
-            &#x27;password&#x27; &#x3D;&gt; bcrypt(&#x27;adrian&#x27;),
+```php
+        DB::table('users')->insert([
+            'name' => 'Adrian Harabula',
+            'email' => 'adrian.harabula@gmail.com',
+            'password' => bcrypt('adrian'),
         ]);
-&#x60;&#x60;&#x60;
+```
 
 Sursa: https://laravel.com/docs/5.4/seeding
 ---
@@ -1308,7 +1308,7 @@ Add this https://github.com/barryvdh/laravel-debugbar to out project.
 
 Done. 71e709588612f639cd53bc28b879d0c2730dbc41
 
-This is how we&#x27;ll debug sql queries.
+This is how we'll debug sql queries.
 ![image](https://cloud.githubusercontent.com/assets/2271038/25945306/197f670a-364f-11e7-827e-3300c9e260e4.png)
 
 # [App acts erraticaly because groups is a reserverd word in oracle; Can we rename table groups?](https://github.com/adrianharabula/condr/issues/61)
@@ -1323,27 +1323,27 @@ appgroups for example? or condrgroups?
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/61#issuecomment-299727953) on: **5/7/2017**
 
 Done, renamed groups table to condrgroups.
-# [Make procedure in SQL to remove all existing tables&amp;sequences; for easier database reinitialization](https://github.com/adrianharabula/condr/issues/62)
+# [Make procedure in SQL to remove all existing tables&sequences; for easier database reinitialization](https://github.com/adrianharabula/condr/issues/62)
 
 > state: **closed** opened by: **adrianharabula** on: **5/7/2017**
 
-&#x60;&#x60;&#x60;
+```
 BEGIN
 
   --Bye Sequences!
   FOR i IN (SELECT us.sequence_name
               FROM USER_SEQUENCES us) LOOP
-    EXECUTE IMMEDIATE &#x27;drop sequence &#x27;|| i.sequence_name ||&#x27;&#x27;;
+    EXECUTE IMMEDIATE 'drop sequence '|| i.sequence_name ||'';
   END LOOP;
 
   --Bye Tables!
   FOR i IN (SELECT ut.table_name
               FROM USER_TABLES ut) LOOP
-    EXECUTE IMMEDIATE &#x27;drop table &#x27;|| i.table_name ||&#x27; CASCADE CONSTRAINTS &#x27;;
+    EXECUTE IMMEDIATE 'drop table '|| i.table_name ||' CASCADE CONSTRAINTS ';
   END LOOP;
 
 END;
-&#x60;&#x60;&#x60;
+```
 
 ### Comments
 
@@ -1351,35 +1351,35 @@ END;
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/62#issuecomment-300081685) on: **5/9/2017**
 
 Procedura arata așa:
-&#x60;&#x60;&#x60;sql
+```sql
 create or replace PROCEDURE purgedatabase AS
 begin
 
   --Bye Sequences!
   FOR i IN (SELECT us.sequence_name
               FROM USER_SEQUENCES us) LOOP
-    EXECUTE IMMEDIATE &#x27;drop sequence &#x27;|| i.sequence_name ||&#x27;&#x27;;
+    EXECUTE IMMEDIATE 'drop sequence '|| i.sequence_name ||'';
   END LOOP;
 
   --Bye Tables!
   FOR i IN (SELECT ut.table_name
               FROM USER_TABLES ut) LOOP
-    EXECUTE IMMEDIATE &#x27;drop table &#x27;|| i.table_name ||&#x27; CASCADE CONSTRAINTS &#x27;;
+    EXECUTE IMMEDIATE 'drop table '|| i.table_name ||' CASCADE CONSTRAINTS ';
   END LOOP;
 
 END;
-&#x60;&#x60;&#x60;
+```
 
 Se apealează așa:
-&#x60;&#x60;&#x60;sql
+```sql
 call purgedatabase()
-&#x60;&#x60;&#x60;
+```
 sau din bloc anonim
-&#x60;&#x60;&#x60;sql
+```sql
 begin
   purgedatabase;
 end;
-&#x60;&#x60;&#x60;
+```
 
 Se folosește când vrem să curățăm baza de date, să o creem din nou. Șterge toate tabelele, toate triggerele și toate secvențele.
 # [Generare schema UML a bazei de date](https://github.com/adrianharabula/condr/issues/63)
@@ -1402,7 +1402,7 @@ Avem așa:
 
 - tabela category tre să fie denumită categories, numele de tabele sunt la plural întotdeauna
 - la fel tabela company
-- la tabele, există câmpul __id__ simplu de regulă, __numetabela_id__ nu e standard, deși e mai sugestiv; pentru laravel de exemplu înseamnă configurare adițională în care trebuie să specifici numele câmpului id cu &#x60;$primaryKey&#x60; property
+- la tabele, există câmpul __id__ simplu de regulă, __numetabela_id__ nu e standard, deși e mai sugestiv; pentru laravel de exemplu înseamnă configurare adițională în care trebuie să specifici numele câmpului id cu `$primaryKey` property
 - nicio tabelă nu are autoincrement pe id WTF!!!!????
 - în tabela user_groups nu e legat user_id de id-ul userul cu foreign key
 - tabela cu numele groups nu e denumită corect, groups e reserved keyword în oracle, a se evita pe cât posibil denumirea groups
@@ -1433,7 +1433,7 @@ Avem ultima versiune aici [Relational_9mai_latest.pdf](https://github.com/adrian
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/65#issuecomment-300082737) on: **5/9/2017**
 
 fad327c66e7d1709be40aeaa7be2de5f63069bdc
-# [Add &#x27;views&#x27; column in products table](https://github.com/adrianharabula/condr/issues/66)
+# [Add 'views' column in products table](https://github.com/adrianharabula/condr/issues/66)
 
 > state: **closed** opened by: **adrianharabula** on: **5/8/2017**
 
@@ -1449,25 +1449,25 @@ fad327c66e7d1709be40aeaa7be2de5f63069bdc
 
 > state: **closed** opened by: **adrianharabula** on: **5/9/2017**
 
-&#x60;&#x60;&#x60;php
+```php
     public function auth()
     {
         // Authentication Routes...
-        $this-&gt;get(&#x27;login&#x27;, &#x27;Auth\LoginController@showLoginForm&#x27;)-&gt;name(&#x27;login&#x27;);
-        $this-&gt;post(&#x27;login&#x27;, &#x27;Auth\LoginController@login&#x27;);
-        $this-&gt;post(&#x27;logout&#x27;, &#x27;Auth\LoginController@logout&#x27;)-&gt;name(&#x27;logout&#x27;);
+        $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+        $this->post('login', 'Auth\LoginController@login');
+        $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
         // Registration Routes...
-        $this-&gt;get(&#x27;register&#x27;, &#x27;Auth\RegisterController@showRegistrationForm&#x27;)-&gt;name(&#x27;register&#x27;);
-        $this-&gt;post(&#x27;register&#x27;, &#x27;Auth\RegisterController@register&#x27;);
+        $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+        $this->post('register', 'Auth\RegisterController@register');
 
         // Password Reset Routes...
-        $this-&gt;get(&#x27;password/reset&#x27;, &#x27;Auth\ForgotPasswordController@showLinkRequestForm&#x27;)-&gt;name(&#x27;password.request&#x27;);
-        $this-&gt;post(&#x27;password/email&#x27;, &#x27;Auth\ForgotPasswordController@sendResetLinkEmail&#x27;)-&gt;name(&#x27;password.email&#x27;);
-        $this-&gt;get(&#x27;password/reset/{token}&#x27;, &#x27;Auth\ResetPasswordController@showResetForm&#x27;)-&gt;name(&#x27;password.reset&#x27;);
-        $this-&gt;post(&#x27;password/reset&#x27;, &#x27;Auth\ResetPasswordController@reset&#x27;);
+        $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+        $this->post('password/reset', 'Auth\ResetPasswordController@reset');
     }
-&#x60;&#x60;&#x60;
+```
 
 Sursa:  https://github.com/laravel/framework/blob/5.4/src/Illuminate/Routing/Router.php#L994-L1010
 
@@ -1523,7 +1523,7 @@ af887c9e13e90655c5f69269c504ad18bff8e265
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/71#issuecomment-302962579) on: **5/21/2017**
 
 Cam aşa arată baza noastră de date generată cu migrările din laravel
-&#x60;&#x60;&#x60;sql
+```sql
 -- Generated by Oracle SQL Developer Data Modeler 4.2.0.932
 --   at:        2017-05-21 23:52:58 EEST
 --   site:      Oracle Database 11g
@@ -1765,7 +1765,7 @@ CREATE TABLE condr.users (
     id               NUMBER(10) NOT NULL,
     name             VARCHAR2(255 BYTE) NOT NULL,
     email            VARCHAR2(255 BYTE) NOT NULL,
-    &quot;password&quot;       VARCHAR2(255 BYTE) NOT NULL,
+    "password"       VARCHAR2(255 BYTE) NOT NULL,
     remember_token   VARCHAR2(100 BYTE),
     created_at       TIMESTAMP,
     updated_at       TIMESTAMP
@@ -1832,7 +1832,7 @@ CREATE OR REPLACE TRIGGER condr.categories_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.categories_id_seq.nextval;
+    :new.id := condr.categories_id_seq.nextval;
 END;
 /
 
@@ -1845,7 +1845,7 @@ CREATE OR REPLACE TRIGGER condr.characteristics_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.characteristics_id_seq.nextval;
+    :new.id := condr.characteristics_id_seq.nextval;
 END;
 /
 
@@ -1858,7 +1858,7 @@ CREATE OR REPLACE TRIGGER condr.companies_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.companies_id_seq.nextval;
+    :new.id := condr.companies_id_seq.nextval;
 END;
 /
 
@@ -1871,7 +1871,7 @@ CREATE OR REPLACE TRIGGER condr.condrgroup_user_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.condrgroup_user_id_seq.nextval;
+    :new.id := condr.condrgroup_user_id_seq.nextval;
 END;
 /
 
@@ -1884,7 +1884,7 @@ CREATE OR REPLACE TRIGGER condr.condrgroups_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.condrgroups_id_seq.nextval;
+    :new.id := condr.condrgroups_id_seq.nextval;
 END;
 /
 
@@ -1897,7 +1897,7 @@ CREATE OR REPLACE TRIGGER condr.migrations_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.migrations_id_seq.nextval;
+    :new.id := condr.migrations_id_seq.nextval;
 END;
 /
 
@@ -1910,7 +1910,7 @@ CREATE OR REPLACE TRIGGER condr.product_user_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.product_user_id_seq.nextval;
+    :new.id := condr.product_user_id_seq.nextval;
 END;
 /
 
@@ -1923,7 +1923,7 @@ CREATE OR REPLACE TRIGGER condr.products_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.products_id_seq.nextval;
+    :new.id := condr.products_id_seq.nextval;
 END;
 /
 
@@ -1936,7 +1936,7 @@ CREATE OR REPLACE TRIGGER condr.users_id_trg BEFORE
         new.id IS NULL
     )
 BEGIN
-    :new.id :&#x3D; condr.users_id_seq.nextval;
+    :new.id := condr.users_id_seq.nextval;
 END;
 /
 
@@ -1984,7 +1984,7 @@ END;
 -- ERRORS                                   0
 -- WARNINGS                                 1
 
-&#x60;&#x60;&#x60;
+```
 # [Add posibility to add custom css/js for specific pages](https://github.com/adrianharabula/condr/issues/72)
 
 > state: **closed** opened by: **adrianharabula** on: **5/11/2017**
@@ -2095,7 +2095,7 @@ Pe baza acestei definiții putem genera foarte aleator caracteristici.
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/77#issuecomment-300997372) on: **5/12/2017**
 
-Idei &amp; articole:
+Idei & articole:
 
 - http://www.redotheweb.com/2014/03/04/faker-generates-real-text.html
 - https://laravel-news.com/learn-to-use-model-factories-in-laravel-5-1
@@ -2143,10 +2143,10 @@ Am pus asta ![favicon](https://cloud.githubusercontent.com/assets/2271038/265279
 > state: **closed** opened by: **adrianharabula** on: **5/12/2017**
 
 Make this thing work!
-&#x60;&#x60;&#x60;php
-$groups &#x3D; Auth::user()-&gt;groups();
+```php
+$groups = Auth::user()->groups();
 print_r($groups);
-&#x60;&#x60;&#x60;
+```
 
 ### Comments
 
@@ -2200,7 +2200,7 @@ Got this https://github.com/adrianharabula/condr/wiki/Roadmap. Needs to be compl
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/84#issuecomment-301339830) on: **5/15/2017**
 
-We&#x27;ve got [these](https://github.com/adrianharabula/condr/tree/dd9bd093983f4465338372bb60e1b3018807bd4b/Dockerfiles/oracledb/sqlscripts) scripts working on first time initialization.
+We've got [these](https://github.com/adrianharabula/condr/tree/dd9bd093983f4465338372bb60e1b3018807bd4b/Dockerfiles/oracledb/sqlscripts) scripts working on first time initialization.
 
 What we need to do is to find a way to make migration run automatically on first run. Not important, but it would be nice to find a way.
 
@@ -2237,7 +2237,7 @@ Etapa III (max 30 puncte - prezentabil in saptamana 23-28 mai de catre cei care 
 
 1. La curs ati invatat sa faceti indecsi ce va pot ajuta in diverse situatii (pentru selecturi simple, pentru JOIN, pentru group by, pentru order by, in cautari pe diverse tipuri de date, cu functii etc.) Alegeti 3 dintre categoriile de mai sus si construiti indecsi care sa va ajute in acele situatii. Trebuie sa demonstrati profesorului de laborator ca intr-adevar executia fara indecsi este mult mai greoaie decat cea in care adaugati indecsii.
 
-2. Crearea de triggere care sa permita satisfacerea constrangerilor existente in proiect. De exemplu daca se sterge o data de care depind si alte date si utilizatorul este sigur de asta sa fie sterse si datele aditionale. Alternativ, puteti implementa o strategie de soft delete (tot prin triggere sa marcheze doar datele &quot;sterse&quot; si sa nu le stearga de tot).
+2. Crearea de triggere care sa permita satisfacerea constrangerilor existente in proiect. De exemplu daca se sterge o data de care depind si alte date si utilizatorul este sigur de asta sa fie sterse si datele aditionale. Alternativ, puteti implementa o strategie de soft delete (tot prin triggere sa marcheze doar datele "sterse" si sa nu le stearga de tot).
 
 3. Utilizarea unui view materializat (+ operatii pe el).
 
@@ -2276,10 +2276,10 @@ avem trigger la delete 2dbe25ddc5a5827b6c5af51a834da0cc32a341ed
 ---
 > from: [**elis47**](https://github.com/adrianharabula/condr/issues/90#issuecomment-301764316) on: **5/16/2017**
 
-&#x60;&#x60;&#x60;sql
-select cc.name, characteristic_values from characterizable c join characteristics cc on c.characteristic_id&#x3D;cc.id 
-where characterizable_id&#x3D;5;
-&#x60;&#x60;&#x60;
+```sql
+select cc.name, characteristic_values from characterizable c join characteristics cc on c.characteristic_id=cc.id 
+where characterizable_id=5;
+```
 # [Use Reviewable and pull requests from now on. Code uploaded is too ugly and buggy.](https://github.com/adrianharabula/condr/issues/91)
 
 > state: **closed** opened by: **adrianharabula** on: **5/18/2017**
@@ -2298,9 +2298,9 @@ yeee first pull request #95 and is looking good
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/92)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/92)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -2317,9 +2317,9 @@ This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg
 
 
 *[testing_reviewable, line 1 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/92#-KkQ2ExPMe_mgbJjMYOY:-KkQ2ExPMe_mgbJjMYOZ:buagjxt) ([raw file](https://github.com/adrianharabula/condr/blob/af68f0ad2c35507a6ae1de58e8b8817cfec78bc0/testing_reviewable#L1)):*
-&gt; &#x60;&#x60;&#x60;
-&gt; Hello world from reviewable;
-&gt; &#x60;&#x60;&#x60;
+> ```
+> Hello world from reviewable;
+> ```
 
 this works pretty well.
 
@@ -2327,7 +2327,7 @@ this works pretty well.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/92)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/92#issuecomment-302362751) on: **5/18/2017**
@@ -2344,7 +2344,7 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/92)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/92#issuecomment-302363076) on: **5/18/2017**
@@ -2358,10 +2358,10 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 
 
 *[testing_reviewable, line 1 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/92#-KkQ2ExPMe_mgbJjMYOY:-KkQ2wsGeotlslxlLAQs:b-896fix) ([raw file](https://github.com/adrianharabula/condr/blob/af68f0ad2c35507a6ae1de58e8b8817cfec78bc0/testing_reviewable#L1)):*
-&lt;details&gt;&lt;summary&gt;&lt;i&gt;Previously, adrianharabula (Adrian Harabula) wrote…&lt;/i&gt;&lt;/summary&gt;&lt;blockquote&gt;
+<details><summary><i>Previously, adrianharabula (Adrian Harabula) wrote…</i></summary><blockquote>
 
 this works pretty well.
-&lt;/blockquote&gt;&lt;/details&gt;
+</blockquote></details>
 
 Done.
 
@@ -2369,7 +2369,7 @@ Done.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/92)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/92#issuecomment-302363444) on: **5/18/2017**
@@ -2383,10 +2383,10 @@ Done.
 
 
 *[testing_reviewable, line 1 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/92#-KkQ2ExPMe_mgbJjMYOY:-KkQ3JotSFqy3Qg7Hms9:b-896fix) ([raw file](https://github.com/adrianharabula/condr/blob/af68f0ad2c35507a6ae1de58e8b8817cfec78bc0/testing_reviewable#L1)):*
-&lt;details&gt;&lt;summary&gt;&lt;i&gt;Previously, adrianharabula (Adrian Harabula) wrote…&lt;/i&gt;&lt;/summary&gt;&lt;blockquote&gt;
+<details><summary><i>Previously, adrianharabula (Adrian Harabula) wrote…</i></summary><blockquote>
 
 Done.
-&lt;/blockquote&gt;&lt;/details&gt;
+</blockquote></details>
 
 Done.
 
@@ -2394,7 +2394,7 @@ Done.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/92)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/92#issuecomment-302363525) on: **5/18/2017**
@@ -2411,21 +2411,21 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/92)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/92#issuecomment-302529146) on: **5/18/2017**
 
-enough testing, let&#x27;s start doing.
+enough testing, let's start doing.
 # [Ads viewgroup modifications](https://github.com/adrianharabula/condr/pull/93)
 
 > state: **closed** opened by: **elis47** on: **5/18/2017**
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/93)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/93)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -2443,32 +2443,32 @@ Review status: all files reviewed at latest revision, 3 unresolved discussions.
 ---
 
 *[app/app/Http/Controllers/GroupsController.php, line 25 at r2](https://reviewable.io:443/reviews/adrianharabula/condr/93#-KkS94Yh3R6QOJPZCKF_:-KkS94Yh3R6QOJPZCKFa:bhuilt4) ([raw file](https://github.com/adrianharabula/condr/blob/5205f1fde7d24201884896e4fa3ade7f1a982ccb/app/app/Http/Controllers/GroupsController.php#L25)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     return redirect()-&gt;route(&#x27;viewGroup&#x27;, [&#x27;id&#x27; &#x3D;&gt; $group-&gt;id]);
-&gt;   }
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     return redirect()->route('viewGroup', ['id' => $group->id]);
+>   }
+> ```
 
 great!!!!
 
 ---
 
 *[app/app/Http/Controllers/ProductsController.php, line 28 at r2](https://reviewable.io:443/reviews/adrianharabula/condr/93#-KkS9CTA_WTxKrPRL8Vn:-KkS9CTA_WTxKrPRL8Vo:b-p6royr) ([raw file](https://github.com/adrianharabula/condr/blob/98360f46d460f7dba0533b6e35a6217d2518616f/app/app/Http/Controllers/ProductsController.php#L28)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     //   echo $product-&gt;name . &#x27; &lt;br /&gt;&#x27;;
-&gt;     // }
-&gt;     return view(&#x27;products&#x27;)-&gt;with(&#x27;products&#x27;,$products);
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     //   echo $product->name . ' <br />';
+>     // }
+>     return view('products')->with('products',$products);
+> ```
 
 mai e nevoie de acest return?
 
 ---
 
 *[app/resources/views/products.blade.php, line 60 at r2](https://reviewable.io:443/reviews/adrianharabula/condr/93#-KkS9TPZEasspXpbL83I:-KkS9TPZEasspXpbL83J:b-o95l8m) ([raw file](https://github.com/adrianharabula/condr/blob/5205f1fde7d24201884896e4fa3ade7f1a982ccb/app/resources/views/products.blade.php#L60)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;             &lt;/div&gt;
-&gt;             &lt;div class&#x3D;&quot;col-md-3&quot;&gt;
-&gt;               &lt;a href&#x3D;{{ route(&#x27;viewproduct&#x27;) }} class&#x3D;&quot;btn btn-primary my-btn my-btn-dropdown btn-block btn-product pull-right&quot;&gt;View details&lt;/a&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>             </div>
+>             <div class="col-md-3">
+>               <a href={{ route('viewproduct') }} class="btn btn-primary my-btn my-btn-dropdown btn-block btn-product pull-right">View details</a>
+> ```
 
 merge şi fără parametru ruta asta?
 
@@ -2476,7 +2476,7 @@ merge şi fără parametru ruta asta?
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/93)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/93#issuecomment-302528823) on: **5/18/2017**
@@ -2488,9 +2488,9 @@ pull requestul #94 conţine şi aceste modificări, îl voi puşa pe el
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/94)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/94)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -2508,33 +2508,33 @@ Review status: all files reviewed at latest revision, 3 unresolved discussions.
 ---
 
 *[app/resources/views/products.blade.php, line 7 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/94#-KkSAwAcqADa5dYEq4Z9:-KkSAwAcqADa5dYEq4ZA:b-jexcxe) ([raw file](https://github.com/adrianharabula/condr/blob/98360f46d460f7dba0533b6e35a6217d2518616f/app/resources/views/products.blade.php#L7)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt; 
-&gt; @section(&#x27;content&#x27;)
-&gt; &lt;link href&#x3D;&quot;/Assets/css/products.css&quot; rel&#x3D;&quot;stylesheet&quot;&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+> 
+> @section('content')
+> <link href="/Assets/css/products.css" rel="stylesheet">
+> ```
 
 cine naiba o fi pus linia asta? :))
 
 ---
 
 *[app/resources/views/products.blade.php, line 68 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/94#-KkSAizkASaafxvNancE:-KkSAizl-upfccQLE7ub:bwi5k2y) ([raw file](https://github.com/adrianharabula/condr/blob/cf564bf3b9981a855f3894df68f97ea2687fea79/app/resources/views/products.blade.php#L68)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt; @push(&#x27;styles&#x27;)
-&gt; &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text/css&quot; href&#x3D;&quot;{{ asset(&#x27;/css/products.css&#x27;) }}&quot;&gt;
-&gt; @endpush
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+> @push('styles')
+> <link rel="stylesheet" type="text/css" href="{{ asset('/css/products.css') }}">
+> @endpush
+> ```
 
 aşa da, aşa se pune un css custom pentru o pagină anume
 
 ---
 
 *[app/resources/views/layouts/app.blade.php, line 18 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/94#-KkSAZEGgSw_mHyOkMPA:-KkSAZEGgSw_mHyOkMPB:b228hjx) ([raw file](https://github.com/adrianharabula/condr/blob/cf564bf3b9981a855f3894df68f97ea2687fea79/app/resources/views/layouts/app.blade.php#L18)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text/css&quot; href&#x3D;&quot;{{ asset(&#x27;/css/custom.css&#x27;) }}&quot;&gt;
-&gt;     &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text/css&quot; href&#x3D;&quot;{{ asset(&#x27;/css/responsive.css&#x27;) }}&quot;&gt;
-&gt;     &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text/css&quot; href&#x3D;&quot;{{ asset(&#x27;/css/products.css&#x27;) }}&quot;&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     <link rel="stylesheet" type="text/css" href="{{ asset('/css/custom.css') }}">
+>     <link rel="stylesheet" type="text/css" href="{{ asset('/css/responsive.css') }}">
+>     <link rel="stylesheet" type="text/css" href="{{ asset('/css/products.css') }}">
+> ```
 
 stylesheets adiţionale adăugăm doar cu push, ca mai sus.
 
@@ -2542,7 +2542,7 @@ stylesheets adiţionale adăugăm doar cu push, ca mai sus.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/94)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [working characteristic relationship](https://github.com/adrianharabula/condr/pull/95)
 
@@ -2550,9 +2550,9 @@ stylesheets adiţionale adăugăm doar cu push, ca mai sus.
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/95)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/95)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -2570,66 +2570,47 @@ Review status: all files reviewed at latest revision, 5 unresolved discussions.
 ---
 
 *[app/app/Http/Controllers/ProductsController.php, line 21 at r2](https://reviewable.io:443/reviews/adrianharabula/condr/95#-KkUk0RkjucoTYYnycG2:-KkUk0RkjucoTYYnycG3:b-b4nfrw) ([raw file](https://github.com/adrianharabula/condr/blob/2b8b9d1809aa97df3e23955c03bb14baf842af22/app/app/Http/Controllers/ProductsController.php#L21)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     $group &#x3D; \App\Condrgroup::find(1);
-&gt;     return view(&#x27;viewProduct&#x27;)-&gt;with(&#x27;product&#x27;, $product)
-&gt;                               -&gt;with(&#x27;group&#x27;, $group);
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     $group = \App\Condrgroup::find(1);
+>     return view('viewProduct')->with('product', $product)
+>                               ->with('group', $group);
+> ```
 
 aici o să ştergem asta
 
 ---
 
 *[app/database/migrations/2017_05_07_000031_create_characterizables_table.php, line 16 at r2](https://reviewable.io:443/reviews/adrianharabula/condr/95#-KkUk640ollxXbyxtGPX:-KkUk641o2CUm8vpbFCS:b-5ei5ni) ([raw file](https://github.com/adrianharabula/condr/blob/2b8b9d1809aa97df3e23955c03bb14baf842af22/app/database/migrations/2017_05_07_000031_create_characterizables_table.php#L16)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     public function up()
-&gt;     {
-&gt;         Schema::create(&#x27;characterizables&#x27;, function (Blueprint $table) {
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     public function up()
+>     {
+>         Schema::create('characterizables', function (Blueprint $table) {
+> ```
 
 minunea!!!!
 
 ---
 
 *[app/database/seeds/DatabaseSeeder.php, line 22 at r2](https://reviewable.io:443/reviews/adrianharabula/condr/95#-KkUljzQmtnTIAu8Y4QH:-KkUljzQmtnTIAu8Y4QI:b-myumth) ([raw file](https://github.com/adrianharabula/condr/blob/2b8b9d1809aa97df3e23955c03bb14baf842af22/app/database/seeds/DatabaseSeeder.php#L22)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;         $this-&gt;call(ProductUserTableSeeder::class);
-&gt;         $this-&gt;call(CharacteristicsTableSeeder::class);
-&gt;         // $this-&gt;call(CharacterizablesTableSeeder::class);
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>         $this->call(ProductUserTableSeeder::class);
+>         $this->call(CharacteristicsTableSeeder::class);
+>         // $this->call(CharacterizablesTableSeeder::class);
+> ```
 
 yes, that was definitely not working
 
 ---
 
-*[app/resources/views/viewProduct.blade.php, line 29 at r2](https://reviewable.io:443/reviews/adrianharabula/condr/95#-KkUo5g_QkoRE-rrQW1X:-KkUo5g_QkoRE-rrQW1Y:bpuqcgk) ([raw file](https://github.com/adrianharabula/condr/blob/2b8b9d1809aa97df3e23955c03bb14baf842af22/app/resources/views/viewProduct.blade.php#L29)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt; 
-&gt;           &lt;h5&gt;  {{ $group-&gt;characteristics[0]-&gt;name }}: {{ $group-&gt;characteristics[0]-&gt;values() }}&lt;/h5&gt;
-&gt; &#x60;&#x60;&#x60;
-
-in sfarsit, working code!!!!
-
----
-
-*[app/resources/views/viewProduct.blade.php, line 30 at r2](https://reviewable.io:443/reviews/adrianharabula/condr/95#-KkUo4wk4cXZVK59bOK6:-KkUo4wk4cXZVK59bOK7:b-yefn26) ([raw file](https://github.com/adrianharabula/condr/blob/2b8b9d1809aa97df3e23955c03bb14baf842af22/app/resources/views/viewProduct.blade.php#L30)):*
-&gt; aracteristic-&gt;name }}: {{ $characteristic-&gt;values() }}&lt;/h5&gt;
-&gt;             @endforeach
-&gt;  
-&gt;           &lt;h5&gt;  {{ $group-&gt;characteristics[0]-&gt;name }}: {{ $group-&gt;characteristics[0]-&gt;values() }}&lt;/h5&gt;
-&gt;  
-
----
-
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/95)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [Major backend changes!!!](https://github.com/adrianharabula/condr/pull/96)
 
 > state: **closed** opened by: **elis47** on: **5/19/2017**
 
-We&#x27;ve got awesome pages working:
+We've got awesome pages working:
 
 - my products
 - products
@@ -2639,10 +2620,10 @@ We&#x27;ve got awesome pages working:
 
 And other booring stuff.
 
-&lt;!-- Reviewable:start --&gt;
+<!-- Reviewable:start -->
 ---
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/96)
-&lt;!-- Reviewable:end --&gt;
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/96)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -2662,7 +2643,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/96#-:-KkVPhSS0dk1bkxXinKO:ba0n61p)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/96#issuecomment-302890356) on: **5/20/2017**
@@ -2689,7 +2670,7 @@ TODO: needs flash message for success message
 ---
 > from: [**elis47**](https://github.com/adrianharabula/condr/issues/97#issuecomment-302865903) on: **5/20/2017**
 
-Doesn&#x27;t verify if the current password matches the given one!!!
+Doesn't verify if the current password matches the given one!!!
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/97#issuecomment-302879938) on: **5/20/2017**
 
@@ -2754,51 +2735,51 @@ Implement it!!!!!!!!!!
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/102#issuecomment-302888645) on: **5/20/2017**
 
 Ok, so this is our deploy webhook.
-&#x60;&#x60;&#x60;php
+```php
 /*
  * Webhook script;
  * It is called by GitHub on every new push
  * This updates the server code to the latest code available on GitHub repo
  */
-Route::post(&#x27;/webhook&#x27;, function(Request $request){
+Route::post('/webhook', function(Request $request){
   // get request body
-  $content &#x3D; $request-&gt;getContent();
+  $content = $request->getContent();
 
   // hash it with the key stored in APP_WEBHOOKKEY
-  // it&#x27;s the same key configured as a secret in GitHub webhook settings
-  $hash &#x3D; hash_hmac(&#x27;sha1&#x27;, $content, env(&#x27;APP_WEBHOOKKEY&#x27;));
+  // it's the same key configured as a secret in GitHub webhook settings
+  $hash = hash_hmac('sha1', $content, env('APP_WEBHOOKKEY'));
 
   // compare it with the one we have in X-Hub-Signature
-  if($request-&gt;header(&#x27;X-Hub-Signature&#x27;) !&#x3D;&#x3D; &#x27;sha1&#x3D;&#x27; . $hash)
+  if($request->header('X-Hub-Signature') !== 'sha1=' . $hash)
     abort(403);
 
   // execute deploy command
   SSH::run([
-      &#x27;cd /root/condr/app&#x27;,
-      &#x27;/root/.config/composer/vendor/laravel/envoy/envoy run deploy&#x27;,
+      'cd /root/condr/app',
+      '/root/.config/composer/vendor/laravel/envoy/envoy run deploy',
   ]);
 });
-&#x60;&#x60;&#x60;
+```
 
 and this is our Envoy.blade.php
-&#x60;&#x60;&#x60;php
-@servers([&#x27;localhost&#x27; &#x3D;&gt; &#x27;127.0.0.1&#x27;])
+```php
+@servers(['localhost' => '127.0.0.1'])
 
-@task(&#x27;deploy&#x27;)
+@task('deploy')
     cd /root/condr
     git pull origin master
 @endtask
 
-&#x60;&#x60;&#x60;
+```
 
 and the exception in VerifyCsrfToken.php
-&#x60;&#x60;&#x60;php
-    protected $except &#x3D; [
-        &#x27;/webhook&#x27;,
+```php
+    protected $except = [
+        '/webhook',
     ];
-&#x60;&#x60;&#x60;
+```
 
-This took some time... but it&#x27;s a piece of art.
+This took some time... but it's a piece of art.
 # [Write docker image for running the site in development mode without without apache](https://github.com/adrianharabula/condr/issues/103)
 
 > state: **open** opened by: **adrianharabula** on: **5/20/2017**
@@ -2814,35 +2795,35 @@ Done. https://github.com/adrianharabula/php7cli-with-oci8
 ## Usage instructions with Laravel
 
 Create a new image
-&#x60;&#x60;&#x60;Dockerfile
+```Dockerfile
 FROM adrianharabula/php7cli-with-oci8
 RUN mkdir /root/app
 WORKDIR /root/app
 EXPOSE 8000
-CMD [ &quot;php&quot;, &quot;artisan&quot;, &quot;serve&quot;, &quot;--host&#x3D;0.0.0.0&quot; ]
-&#x60;&#x60;&#x60;
+CMD [ "php", "artisan", "serve", "--host=0.0.0.0" ]
+```
 
 Build it with
-&#x60;&#x60;&#x60;bash
+```bash
 docker build -t my-laravel-app .
-&#x60;&#x60;&#x60;
+```
 
 Run your laravel installation with:
 
-&#x60;&#x60;&#x60;bash
+```bash
 docker run -p8000:8000 -v laravel/app/folder/:/root/app my-laravel-app
-&#x60;&#x60;&#x60;
+```
 
 Dockercompose with Oracle database here:
-&#x60;&#x60;&#x60;yml
-version: &#x27;3&#x27;
+```yml
+version: '3'
 
 services:
    oracledb:
      image: wnameless/oracle-xe-11g
      restart: always
      ports:
-      - &quot;1521:1521&quot;
+      - "1521:1521"
 
    devapp:
      depends_on:
@@ -2856,48 +2837,48 @@ services:
      volumes:
       - ./app:/root/app
      ports:
-      - &quot;8000:8000&quot;
+      - "8000:8000"
 
 volumes:
     www:
 
-&#x60;&#x60;&#x60;
+```
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/103#issuecomment-302916965) on: **5/21/2017**
 
 Simple instructions to run our project:
-&#x60;&#x60;&#x60;php
+```php
 docker-compose up -d devapp
-&#x60;&#x60;&#x60;
+```
 
-This will create oracle database and run the app with &#x27;php artisan serve&#x27; on port 8000. Just access [localhost:8000](http://localhost:8000) and we&#x27;re done!!!!!
+This will create oracle database and run the app with 'php artisan serve' on port 8000. Just access [localhost:8000](http://localhost:8000) and we're done!!!!!
 # [GuzzleHttp requests examples](https://github.com/adrianharabula/condr/issues/104)
 
 > state: **open** opened by: **adrianharabula** on: **5/20/2017**
 
 The sync version
-&#x60;&#x60;&#x60;php
-        $client &#x3D; new \GuzzleHttp\Client();
-        $request &#x3D;  $client-&gt;get(&#x27;https://webhooks.condr.me/version&#x27;);
-        $message &#x3D; $request-&gt;getBody();
-&#x60;&#x60;&#x60;
+```php
+        $client = new \GuzzleHttp\Client();
+        $request =  $client->get('https://webhooks.condr.me/version');
+        $message = $request->getBody();
+```
 
 The Async version
-&#x60;&#x60;&#x60;php
-        $client &#x3D; new \GuzzleHttp\Client();
-        $promise &#x3D;  $client-&gt;getAsync(&#x27;https://webhooks.condr.me/version&#x27;);
+```php
+        $client = new \GuzzleHttp\Client();
+        $promise =  $client->getAsync('https://webhooks.condr.me/version');
 
-        $promise-&gt;then(
+        $promise->then(
             function (ResponseInterface $res) {
-                $msg &#x3D; (string) $res-&gt;getBody();
+                $msg = (string) $res->getBody();
                 \Debugbar::notice(msg);
             },
             function (RequestException $e) {
-                echo $e-&gt;getMessage() . &quot;\n&quot;;
-                echo $e-&gt;getRequest()-&gt;getMethod();
+                echo $e->getMessage() . "\n";
+                echo $e->getRequest()->getMethod();
             }
         );
-&#x60;&#x60;&#x60;
+```
 
 ### Comments
 
@@ -2913,16 +2894,16 @@ The Async version
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/105#issuecomment-302895834) on: **5/20/2017**
 
 this is what we currently have:
-&#x60;&#x60;&#x60;php
+```php
         \SSH::run([
-            &#x27;cd /root/condr/app&#x27;,
-            &#x27;/root/.config/composer/vendor/laravel/envoy/envoy run getlastcommit&#x27;,
+            'cd /root/condr/app',
+            '/root/.config/composer/vendor/laravel/envoy/envoy run getlastcommit',
         ], function($line)
         {
-            $line &#x3D; str_replace(&quot;[127.0.0.1]:&quot;, &#x27;&#x27;, $line);
-            \Debugbar::addmessage($line, &quot;Version&quot;);
+            $line = str_replace("[127.0.0.1]:", '', $line);
+            \Debugbar::addmessage($line, "Version");
         });
-&#x60;&#x60;&#x60;
+```
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/105#issuecomment-302901474) on: **5/21/2017**
 
@@ -2935,9 +2916,9 @@ Updated version using post-commit hook.
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/106)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/106)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -2955,11 +2936,11 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 ---
 
 *[app/.gitignore, line 11 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/106#-Kkbey03M6qkmXpJeKry:-Kkbey04fWNFv5sIfc65:b-z2dscf) ([raw file](https://github.com/adrianharabula/condr/blob/0f5de9af03d74b22727d8ac79484ac0df12fc8fe/app/.gitignore#L11)):*
-&gt; &#x60;&#x60;&#x60;
-&gt; .env
-&gt; composer.phar
-&gt; hicoria_rsa
-&gt; &#x60;&#x60;&#x60;
+> ```
+> .env
+> composer.phar
+> hicoria_rsa
+> ```
 
 this needs to be deleted
 
@@ -2967,7 +2948,7 @@ this needs to be deleted
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/106)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [Legat de structură; unele pagini vor fi scoase; care vor fi acelea?](https://github.com/adrianharabula/condr/issues/107)
 
@@ -3024,7 +3005,7 @@ Cum pot fi rulate astea într-un mod cât mai smooth.
 
 Putem folosi direct asta!!!!! https://laravel.com/docs/5.4/artisan#programmatically-executing-commands
 
-That&#x27;s much better.
+That's much better.
 # [Restore login form back to original width](https://github.com/adrianharabula/condr/issues/110)
 
 > state: **closed** opened by: **adrianharabula** on: **5/21/2017**
@@ -3144,9 +3125,9 @@ pentru a selecta anumite caracteristici
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/117)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/117)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3157,9 +3138,9 @@ This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/118)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/118)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3170,9 +3151,9 @@ This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/119)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/119)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3190,33 +3171,33 @@ Review status: all files reviewed at latest revision, 3 unresolved discussions.
 ---
 
 *[.gitignore, line 5 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/119#-Kknfu1ei8P4YpRQNE74:-Kknfu1fsp5dpXgSHtTM:bhpwav7) ([raw file](https://github.com/adrianharabula/condr/blob/80e9356a5cc55018cdbf93771823b1cca2d3f516/.gitignore#L5)):*
-&gt; &#x60;&#x60;&#x60;
-&gt; app/config/algolia\.php
-&gt; 
-&gt; app/config/scout\.php
-&gt; &#x60;&#x60;&#x60;
+> ```
+> app/config/algolia\.php
+> 
+> app/config/scout\.php
+> ```
 
 o să vedem aici cum facem cu fişierele de configurare. Trebuie pe cât posibil să evităm punerea datelor de autentificare pe git, dar în acelaşi timp fişierele astea ar trebui să fie pe git
 
 ---
 
 *[app/app/Http/Controllers/GroupsController.php, line 28 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/119#-KkngQC4DBHNxeAG-QYO:-KkngQC5hLbGZFTcHAI_:bo3kmwv) ([raw file](https://github.com/adrianharabula/condr/blob/80e9356a5cc55018cdbf93771823b1cca2d3f516/app/app/Http/Controllers/GroupsController.php#L28)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;   function search(Request $request) {
-&gt;     $name &#x3D; $request-&gt;group_name;
-&gt;     $groups &#x3D; Group::search($name)-&gt;get();
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>   function search(Request $request) {
+>     $name = $request->group_name;
+>     $groups = Group::search($name)->get();
+> ```
 
 uite ce frumos arată searchul :)
 
 ---
 
 *[app/resources/views/addpreferences.blade.php, line 24 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/119#-KkngZiJpedYrePCWiMW:-KkngZiJpedYrePCWiMX:btump5u) ([raw file](https://github.com/adrianharabula/condr/blob/80e9356a5cc55018cdbf93771823b1cca2d3f516/app/resources/views/addpreferences.blade.php#L24)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;                 &lt;div class&#x3D;&quot;checkbox&quot;&gt;
-&gt;                   &lt;label&gt;
-&gt;                     &lt;input name&#x3D;&quot;wanted&quot; type&#x3D;&quot;checkbox&quot; value&#x3D;&quot;&quot;&gt;I want the following characteristics
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>                 <div class="checkbox">
+>                   <label>
+>                     <input name="wanted" type="checkbox" value="">I want the following characteristics
+> ```
 
 ce legătură are asta cu modificările pentru search?
 
@@ -3224,7 +3205,7 @@ ce legătură are asta cu modificările pentru search?
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/119)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [Add scout credentials to .env](https://github.com/adrianharabula/condr/pull/120)
 
@@ -3232,9 +3213,9 @@ ce legătură are asta cu modificările pentru search?
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/120)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/120)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3254,7 +3235,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/120)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [Arată mesaj no products founds la sărci când nu găseşte rezultate](https://github.com/adrianharabula/condr/issues/121)
 
@@ -3274,9 +3255,9 @@ Solved here #123
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/122)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/122)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3296,17 +3277,17 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/122)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
-# [added #style to products,preferences&amp;viewGroup pages](https://github.com/adrianharabula/condr/pull/123)
+# [added #style to products,preferences&viewGroup pages](https://github.com/adrianharabula/condr/pull/123)
 
 > state: **closed** opened by: **elis47** on: **5/23/2017**
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/123)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/123)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3324,22 +3305,22 @@ Review status: all files reviewed at latest revision, 2 unresolved discussions.
 ---
 
 *[app/resources/views/products.blade.php, line 67 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/123#-KkpIUh9-eSk0f9XSaNE:-KkpIUhAPTBmJSPEXyY3:b7zs8e6) ([raw file](https://github.com/adrianharabula/condr/blob/4644ea7a46f8ea6dab3cfa9e57c014777a12fc30/app/resources/views/products.blade.php#L67)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;                 &lt;ul&gt;
-&gt;                   &lt;li&gt; Oups! We haven&#x27;t found any product in our database...&lt;/li&gt;
-&gt;                 &lt;/ul&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>                 <ul>
+>                   <li> Oups! We haven't found any product in our database...</li>
+>                 </ul>
+> ```
 
 suuuuupperr!!
 
 ---
 
 *[app/resources/views/viewGroup.blade.php, line 29 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/123#-KkpIXhTdFWCMNiNijPp:-KkpIXhTdFWCMNiNijPq:btlyovk) ([raw file](https://github.com/adrianharabula/condr/blob/4644ea7a46f8ea6dab3cfa9e57c014777a12fc30/app/resources/views/viewGroup.blade.php#L29)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;           &lt;div class&#x3D;&quot;col-md-3&quot;&gt;
-&gt;             &lt;a class&#x3D;&quot;thumbnail pull-left&quot; href&#x3D;&quot;#&quot;&gt; &lt;img class&#x3D;&quot;media-object&quot; src&#x3D;&quot;http://lorempixel.com/300/400/abstract/&quot; style&#x3D;&quot;width:100%;&quot;&gt; &lt;/a&gt;
-&gt;           &lt;/div&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>           <div class="col-md-3">
+>             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://lorempixel.com/300/400/abstract/" style="width:100%;"> </a>
+>           </div>
+> ```
 
 avem şi imagini! :)
 
@@ -3347,7 +3328,7 @@ avem şi imagini! :)
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/123)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [fix image size in seeder](https://github.com/adrianharabula/condr/pull/124)
 
@@ -3355,10 +3336,10 @@ avem şi imagini! :)
 
 Fix product page styles
 
-&lt;!-- Reviewable:start --&gt;
+<!-- Reviewable:start -->
 ---
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/124)
-&lt;!-- Reviewable:end --&gt;
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/124)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3378,17 +3359,17 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/124)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
-# [added #style to addpreferences,groups,preferences&amp;viewGroup pages](https://github.com/adrianharabula/condr/pull/125)
+# [added #style to addpreferences,groups,preferences&viewGroup pages](https://github.com/adrianharabula/condr/pull/125)
 
 > state: **closed** opened by: **elis47** on: **5/23/2017**
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/125)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/125)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3406,11 +3387,11 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 ---
 
 *[app/resources/views/mygroups.blade.php, line 30 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/125#-Kkp_y-dcEgI2v9GFZw-:-Kkp_y-exypWY2Tl69RA:bmlr55b) ([raw file](https://github.com/adrianharabula/condr/blob/6fc57ab71a8981092c2b16bd368da9261745fd54/app/resources/views/mygroups.blade.php#L30)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;    				                                &lt;/div&gt;
-&gt;    				                            &lt;/td&gt;
-&gt;                                        &lt;td class&#x3D;&quot;col-md-0&quot;&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>    				                                </div>
+>    				                            </td>
+>                                        <td class="col-md-0">
+> ```
 
 col-md-0??? wtf is this?
 
@@ -3418,17 +3399,17 @@ col-md-0??? wtf is this?
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/125)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
-# [added delete functionality to myproduct&amp;mygroups pages](https://github.com/adrianharabula/condr/pull/126)
+# [added delete functionality to myproduct&mygroups pages](https://github.com/adrianharabula/condr/pull/126)
 
 > state: **closed** opened by: **elis47** on: **5/23/2017**
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/126)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/126)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3443,32 +3424,19 @@ This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg
 Reviewed 7 of 7 files at r1.
 Review status: all files reviewed at latest revision, 1 unresolved discussion.
 
----
-
-*[app/resources/views/viewGroup.blade.php, line 14 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/126#-KkpheFc-WwVBHI7lVUu:-KkpheFc-WwVBHI7lVUv:b-8fx2u7) ([raw file](https://github.com/adrianharabula/condr/blob/1abad5351a94e3625e5df8f2f60d5c370ba607cf/app/resources/views/viewGroup.blade.php#L14)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;       	&lt;div class&#x3D;&quot;col-md-4 col-md-offset-4&quot; style&#x3D;&quot;margin-top: 40px;&quot;&gt;
-&gt;         	&lt;div class&#x3D;&quot;panel panel-success&quot;&gt;
-&gt;             &lt;div class&#x3D;&quot;panel-heading&quot;&gt;{{ Session::get(&#x27;status&#x27;) }}&lt;/div&gt;
-&gt; &#x60;&#x60;&#x60;
-
-:+1: 
-
----
-
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/126)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
-# [&quot;add product&quot; functionality added](https://github.com/adrianharabula/condr/pull/127)
+# ["add product" functionality added](https://github.com/adrianharabula/condr/pull/127)
 
 > state: **closed** opened by: **elis47** on: **5/23/2017**
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/127)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/127)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3488,12 +3456,12 @@ Review status: all files reviewed at latest revision, all discussions resolved, 
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/127)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/127#issuecomment-303746664) on: **5/24/2017**
 
-&lt;img class&#x3D;&quot;emoji&quot; title&#x3D;&quot;:lgtm:&quot; alt&#x3D;&quot;:lgtm:&quot; align&#x3D;&quot;absmiddle&quot; src&#x3D;&quot;https://reviewable.io/lgtm.png&quot; height&#x3D;&quot;20&quot; width&#x3D;&quot;61&quot;/&gt;
+<img class="emoji" title=":lgtm:" alt=":lgtm:" align="absmiddle" src="https://reviewable.io/lgtm.png" height="20" width="61"/>
 
 ---
 
@@ -3505,7 +3473,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/127#-:-KkuuytbO22M55OtcrqB:bnfp4nl)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [stylized mygroups,mypreferences pages](https://github.com/adrianharabula/condr/pull/128)
 
@@ -3513,9 +3481,9 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/128)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/128)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3535,7 +3503,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/128)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [added major style changes to many pages](https://github.com/adrianharabula/condr/pull/129)
 
@@ -3543,9 +3511,9 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/129)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/129)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3563,54 +3531,54 @@ Review status: all files reviewed at latest revision, 5 unresolved discussions.
 ---
 
 *[app/public/css/style.css, line 174 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/129#-Kkw4kMl6X475hIOSwp2:-Kkw4kMmyeXBADzch8H5:b-8fx2u7) ([raw file](https://github.com/adrianharabula/condr/blob/d35c3b23ace202bf8e36e721e47aaf32ca0bfece/app/public/css/style.css#L174)):*
-&gt; &#x60;&#x60;&#x60;CSS
-&gt; button.btn.btn-primary.my-btn:hover,
-&gt; a.btn.btn-primary.my-btn:hover{
-&gt; 	background: #85144B;
-&gt; &#x60;&#x60;&#x60;
+> ```CSS
+> button.btn.btn-primary.my-btn:hover,
+> a.btn.btn-primary.my-btn:hover{
+> 	background: #85144B;
+> ```
 
 :+1: 
 
 ---
 
 *[app/resources/views/addpreferences.blade.php, line 10 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/129#-Kkw4pFs1ffTx-96qV84:-Kkw4pFs1ffTx-96qV85:bppdmud) ([raw file](https://github.com/adrianharabula/condr/blob/d35c3b23ace202bf8e36e721e47aaf32ca0bfece/app/resources/views/addpreferences.blade.php#L10)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;       &lt;div class&#x3D;&quot;panel panel-default&quot;&gt;
-&gt;         &lt;div class&#x3D;&quot;panel-heading text-center&quot;&gt;
-&gt;           &lt;h4&gt;&lt;b&gt;Enter your preferences here and let&#x27;s get started!&lt;/b&gt;&lt;/h4&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>       <div class="panel panel-default">
+>         <div class="panel-heading text-center">
+>           <h4><b>Enter your preferences here and let's get started!</b></h4>
+> ```
 
 ori h4 ori îngroşat, nu poţi să le ai pe ambele
 
 ---
 
 *[app/resources/views/addpreferences.blade.php, line 124 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/129#-Kkw5UeFLxzWasHUKjW4:-Kkw5UeFLxzWasHUKjW5:bn9bgc2) ([raw file](https://github.com/adrianharabula/condr/blob/d35c3b23ace202bf8e36e721e47aaf32ca0bfece/app/resources/views/addpreferences.blade.php#L124)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     font-family: inherit;
-&gt;     font-size: inherit;
-&gt;     line-height: 1.9;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     font-family: inherit;
+>     font-size: inherit;
+>     line-height: 1.9;
+> ```
 
 1.9 ce? pixel, %, em, etc?
 
 ---
 
 *[app/resources/views/viewProduct.blade.php, line 38 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/129#-Kkw6DP75ZvxAaOy5Zq4:-Kkw6DP75ZvxAaOy5Zq5:b-kdayy9) ([raw file](https://github.com/adrianharabula/condr/blob/d35c3b23ace202bf8e36e721e47aaf32ca0bfece/app/resources/views/viewProduct.blade.php#L38)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;             @forelse ($product-&gt;characteristics as $characteristic)
-&gt;                 &lt;h5&gt;
-&gt;                   &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-danger btn-circle&quot; data-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;Add me to your preferences!&quot;&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>             @forelse ($product->characteristics as $characteristic)
+>                 <h5>
+>                   <button type="button" class="btn btn-danger btn-circle" data-toggle="tooltip" title="Add me to your preferences!">
+> ```
 
-ffffffff bine!!!!! &lt;3
+ffffffff bine!!!!! <3
 
 ---
 
 *[app/resources/views/layouts/app.blade.php, line 22 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/129#-Kkw6qUb3-VVP16roPpY:-Kkw6qUb3-VVP16roPpZ:bhcup9) ([raw file](https://github.com/adrianharabula/condr/blob/d35c3b23ace202bf8e36e721e47aaf32ca0bfece/app/resources/views/layouts/app.blade.php#L22)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt; 
-&gt;     &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+> 
+>     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+> ```
 
 avem inclus de 2 ori bootstrapul, să decidem pe care să îl lăsăm
 
@@ -3618,7 +3586,7 @@ avem inclus de 2 ori bootstrapul, să decidem pe care să îl lăsăm
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/129)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [add_characteristic feature implemented](https://github.com/adrianharabula/condr/pull/130)
 
@@ -3626,9 +3594,9 @@ avem inclus de 2 ori bootstrapul, să decidem pe care să îl lăsăm
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/130)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/130)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3636,7 +3604,7 @@ This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/130#issuecomment-303842445) on: **5/24/2017**
 
-&lt;img class&#x3D;&quot;emoji&quot; title&#x3D;&quot;:lgtm:&quot; alt&#x3D;&quot;:lgtm:&quot; align&#x3D;&quot;absmiddle&quot; src&#x3D;&quot;https://reviewable.io/lgtm.png&quot; height&#x3D;&quot;20&quot; width&#x3D;&quot;61&quot;/&gt;
+<img class="emoji" title=":lgtm:" alt=":lgtm:" align="absmiddle" src="https://reviewable.io/lgtm.png" height="20" width="61"/>
 
 ---
 
@@ -3646,30 +3614,17 @@ Review status: all files reviewed at latest revision, 2 unresolved discussions, 
 ---
 
 *[app/app/Http/Controllers/MyPreferencesController.php, line 41 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/130#-Kkw7K4fasrgjQKtKrdk:-Kkw7K4gKs5lhuSeeksf:bstbqlm) ([raw file](https://github.com/adrianharabula/condr/blob/2ee04ead01d4f38c2e08e97bb98760895107b29e/app/app/Http/Controllers/MyPreferencesController.php#L41)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt; 
-&gt;   function store(\App\Characteristic $characteristic, Request $request) {
-&gt;     Auth::user()-&gt;characteristics()-&gt;syncWithoutDetaching($characteristic);
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+> 
+>   function store(\App\Characteristic $characteristic, Request $request) {
+>     Auth::user()->characteristics()->syncWithoutDetaching($characteristic);
+> ```
 
 fac restrictia de unicitate si din baza de date oracle; unicitate pe 3 chei
 
----
-
-*[app/resources/views/viewProduct.blade.php, line 44 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/130#-Kkw8VxsXExVF_GNuj7H:-Kkw8VxsXExVF_GNuj7I:b-nn5mly) ([raw file](https://github.com/adrianharabula/condr/blob/2ee04ead01d4f38c2e08e97bb98760895107b29e/app/resources/views/viewProduct.blade.php#L44)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;                 &lt;h5&gt;
-&gt;                   &lt;button class&#x3D;&quot;btn btn-danger btn-circle&quot; data-toggle&#x3D;&quot;tooltip&quot; title&#x3D;&quot;Add me to your preferences!&quot;&gt;
-&gt;                     &lt;span class&#x3D;&quot;glyphicon glyphicon-heart&quot;&gt;&lt;/span&gt;{{ $characteristic-&gt;name }}: {{ $characteristic-&gt;values() }}
-&gt; &#x60;&#x60;&#x60;
-
-inimiiiioarăă!! ieee
-
----
-
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/130#-:-Kkw8DIMSY2NoVOQfjtw:bnfp4nl)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [cleaned up code](https://github.com/adrianharabula/condr/pull/131)
 
@@ -3677,9 +3632,9 @@ inimiiiioarăă!! ieee
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/131)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/131)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3699,7 +3654,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/131)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [fix](https://github.com/adrianharabula/condr/pull/132)
 
@@ -3707,9 +3662,9 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/132)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/132)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3738,40 +3693,40 @@ Pur şi simplu merge aleator, uneori adaugă, alteori nu.
 Cleaning up code, small bug fixes.
 
 Added error logic. See backend code
-&#x60;&#x60;&#x60;php
-        if ($exists &#x3D; Auth::user()-&gt;groups-&gt;contains($group-&gt;id)) {
-            $request-&gt;session()-&gt;flash(&#x27;message&#x27;, &#x27;You are already in the group!&#x27;);
-            $request-&gt;session()-&gt;flash(&#x27;alert-class&#x27;, &#x27;alert-danger&#x27;);
+```php
+        if ($exists = Auth::user()->groups->contains($group->id)) {
+            $request->session()->flash('message', 'You are already in the group!');
+            $request->session()->flash('alert-class', 'alert-danger');
         } else {
-            Auth::user()-&gt;groups()-&gt;syncWithoutDetaching($group);
-            $request-&gt;session()-&gt;flash(&#x27;message&#x27;, &#x27;You have joined the group succesfully!&#x27;);
+            Auth::user()->groups()->syncWithoutDetaching($group);
+            $request->session()->flash('message', 'You have joined the group succesfully!');
         }
-&#x60;&#x60;&#x60;
+```
 and frontend code:
-&#x60;&#x60;&#x60;php
-      @if(Session::has(&#x27;message&#x27;))
-        &lt;div class&#x3D;&quot;row&quot;&gt;
-          &lt;div class&#x3D;&quot;col-md-6 col-md-offset-3&quot;&gt;
-            &lt;div class&#x3D;&quot;alert {{ Session::get(&#x27;alert-class&#x27;, &#x27;alert-success&#x27;) }} alert-dismissable&quot;&gt;
-              &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;alert&quot; aria-label&#x3D;&quot;close&quot;&gt;&amp;times;&lt;/a&gt;
-              @if(Session::get(&#x27;alert-class&#x27;) &#x3D;&#x3D;&#x3D; &#x27;alert-danger&#x27;)
-                &lt;strong&gt;Error: &lt;/strong&gt;
+```php
+      @if(Session::has('message'))
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="alert {{ Session::get('alert-class', 'alert-success') }} alert-dismissable">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              @if(Session::get('alert-class') === 'alert-danger')
+                <strong>Error: </strong>
               @else
-                &lt;strong&gt;Success: &lt;/strong&gt;
+                <strong>Success: </strong>
               @endif
-              {{ Session::get(&#x27;message&#x27;) }}
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
+              {{ Session::get('message') }}
+            </div>
+          </div>
+        </div>
       @endif
-&#x60;&#x60;&#x60;
+```
 
 Can be used anywhere.
 
-&lt;!-- Reviewable:start --&gt;
+<!-- Reviewable:start -->
 ---
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/135)
-&lt;!-- Reviewable:end --&gt;
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/135)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3791,7 +3746,7 @@ Review status: 24 of 25 files reviewed at latest revision, all discussions resol
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/135)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [get values and votes for a specific characteristic related to a product](https://github.com/adrianharabula/condr/issues/136)
 
@@ -3841,9 +3796,9 @@ avem!!! scholarly!!!! https://docs.condr.me
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/140)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/140)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -3863,7 +3818,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/140)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**elis47**](https://github.com/adrianharabula/condr/pull/140#issuecomment-304109986) on: **5/25/2017**
@@ -3933,7 +3888,7 @@ Cine nu are chef de lucru, am rugămintea să stea deoparte. E liber să facă c
 > state: **open** opened by: **adrianharabula** on: **5/26/2017**
 
 app/Repositories/Products.php
-&#x60;&#x60;&#x60;php
+```php
 namespace App\Repositories;
 
 use App\Product;
@@ -3944,27 +3899,27 @@ class Products
 
     public function __construct(Product $product)
     {
-        $this-&gt;product &#x3D; $product;
+        $this->product = $product;
     }
 
     public function getProduct()
     {
-        return $this-&gt;product;
+        return $this->product;
     }
 }
-&#x60;&#x60;&#x60;
+```
 
 Iar din controller facem asta:
-&#x60;&#x60;&#x60;php
+```php
 use App\Repositories\Products;
 class ProductsController extends Controller
 {
     function index(Products $products)
     {
-        return view(&#x27;products&#x27;)-&gt;with(&#x27;products&#x27;, $products-&gt;getProduct()-&gt;all());
+        return view('products')->with('products', $products->getProduct()->all());
     }
 }
-&#x60;&#x60;&#x60;
+```
 
 ### Comments
 
@@ -3972,7 +3927,7 @@ class ProductsController extends Controller
 > from: [**pomirleanu**](https://github.com/adrianharabula/condr/issues/145#issuecomment-304280246) on: **5/26/2017**
 
 Interface:
-&#x60;&#x60;&#x60;php
+```php
 interface EloquentRepositoryInterface
 {
 
@@ -3993,7 +3948,7 @@ interface EloquentRepositoryInterface
      *
      * @return mixed
      */
-    public function find($id, $columns &#x3D; [&#x27;*&#x27;]);
+    public function find($id, $columns = ['*']);
 
 
     /**
@@ -4007,7 +3962,7 @@ interface EloquentRepositoryInterface
      *
      * @return mixed
      */
-    public function findBy($field, $value, $columns &#x3D; [&#x27;*&#x27;]);
+    public function findBy($field, $value, $columns = ['*']);
 
 
     /**
@@ -4040,10 +3995,10 @@ interface EloquentRepositoryInterface
      */
     public function delete($id);
 }
-&#x60;&#x60;&#x60;
+```
 
 Abstract repository:
-&#x60;&#x60;&#x60;php
+```php
 abstract class EloquentRepository implements EloquentRepositoryInterface
 {
 
@@ -4058,7 +4013,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
      */
     public function __construct()
     {
-        $this-&gt;_model &#x3D; $this-&gt;setModel();
+        $this->_model = $this->setModel();
     }
 
 
@@ -4074,7 +4029,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
      */
     public function setModel()
     {
-        $this-&gt;_model &#x3D; app()-&gt;make($this-&gt;getModel());
+        $this->_model = app()->make($this->getModel());
     }
 
 
@@ -4084,7 +4039,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
      */
     public function getAll()
     {
-        return $this-&gt;_model-&gt;all();
+        return $this->_model->all();
     }
 
 
@@ -4097,9 +4052,9 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
      *
      * @return mixed
      */
-    public function find($id, $columns &#x3D; [&#x27;*&#x27;])
+    public function find($id, $columns = ['*'])
     {
-        $result &#x3D; $this-&gt;_model-&gt;find($id, $columns);
+        $result = $this->_model->find($id, $columns);
 
         return $result;
     }
@@ -4116,9 +4071,9 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
      *
      * @return mixed
      */
-    public function findBy($attribute, $value, $columns &#x3D; [&#x27;*&#x27;])
+    public function findBy($attribute, $value, $columns = ['*'])
     {
-        $result &#x3D; $this-&gt;_model-&gt;where($attribute, &#x27;&#x3D;&#x27;, $value)-&gt;first($columns);
+        $result = $this->_model->where($attribute, '=', $value)->first($columns);
 
         return $result;
     }
@@ -4133,7 +4088,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
      */
     public function create(array $attributes)
     {
-        return $this-&gt;_model-&gt;create($attributes);
+        return $this->_model->create($attributes);
     }
 
 
@@ -4147,9 +4102,9 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
      */
     public function update($id, array $attributes)
     {
-        $result &#x3D; $this-&gt;find($id);
+        $result = $this->find($id);
         if ($result) {
-            $result-&gt;update($attributes);
+            $result->update($attributes);
 
             return $result;
         }
@@ -4169,7 +4124,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
     public function updateEntity($_model, array $attributes)
     {
         if ($_model) {
-            $_model-&gt;update(array_except($attributes, &#x27;email&#x27;));
+            $_model->update(array_except($attributes, 'email'));
 
             return $_model;
         }
@@ -4187,9 +4142,9 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
      */
     public function delete($id)
     {
-        $result &#x3D; $this-&gt;find($id);
+        $result = $this->find($id);
         if ($result) {
-            $result-&gt;delete();
+            $result->delete();
 
             return true;
         }
@@ -4197,9 +4152,9 @@ abstract class EloquentRepository implements EloquentRepositoryInterface
         return false;
     }
 }
-&#x60;&#x60;&#x60;
+```
 Product repository:
-&#x60;&#x60;&#x60;php
+```php
 class ProductRepository extends EloquentRepository
 {
 
@@ -4208,10 +4163,10 @@ class ProductRepository extends EloquentRepository
         return ProductModel::class;
     }
 }
-&#x60;&#x60;&#x60;
+```
 
 Product Controller:
-&#x60;&#x60;&#x60;php
+```php
 class ProductController extends Controller
 {
 
@@ -4228,14 +4183,14 @@ class ProductController extends Controller
      */
     public function __construct(ProductRepository $_productRepository)
     {
-        $this-&gt;_productRepository &#x3D; $_productRepository;
+        $this->_productRepository = $_productRepository;
     }
 
    public function getProducts()
     {
-        return view(&#x27;products&#x27;)-&gt;with(&#x27;products&#x27;,$this-&gt;_productRepository-&gt;all());
+        return view('products')->with('products',$this->_productRepository->all());
     }
-&#x60;&#x60;&#x60;
+```
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/145#issuecomment-304497067) on: **5/28/2017**
 
@@ -4246,9 +4201,9 @@ thanks!!! https://github.com/adrianharabula/condr/blob/953620aad8b08178940ab7934
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/146)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/146)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4270,65 +4225,65 @@ se pare că nu ne mai trebuie, am simplificat puţin lucrurile
 ---
 
 *[app/app/Product.php, line 6 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/146#-Kl8N6eOgtVp7trVXNqN:-Kl8N6eOgtVp7trVXNqO:b93ziwx) ([raw file](https://github.com/adrianharabula/condr/blob/31aacc7d798578fdd68c6892aa6ec598963a358d/app/app/Product.php#L6)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt; 
-&gt; use Illuminate\Database\Eloquent\Model;
-&gt; use Laravel\Scout\Searchable;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+> 
+> use Illuminate\Database\Eloquent\Model;
+> use Laravel\Scout\Searchable;
+> ```
 
 aici trebuie să scoatem searchable pentru că folosim alt cod pentru search acum
 
 ---
 
 *[app/app/Product.php, line 41 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/146#-Kl8NEY46DM2kOcEstCi:-Kl8NEY46DM2kOcEstCj:bv6r64f) ([raw file](https://github.com/adrianharabula/condr/blob/31aacc7d798578fdd68c6892aa6ec598963a358d/app/app/Product.php#L41)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     public function characteristics()
-&gt;     {
-&gt;         return $this-&gt;belongsToMany(Characteristic::class, &#x27;product_characteristic_vote&#x27;, &#x27;product_id&#x27;, &#x27;characteristic_id&#x27;);
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     public function characteristics()
+>     {
+>         return $this->belongsToMany(Characteristic::class, 'product_characteristic_vote', 'product_id', 'characteristic_id');
+> ```
 
 aici avem relaţie many to many cu 3 pivoţi, poduct_id, characteristic_id şi vote_id
 
 ---
 
 *[app/app/Http/Controllers/ContactFormController.php, line 10 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/146#-Kl8NcbkrEmfdbVetd3S:-Kl8NcbkrEmfdbVetd3T:bnsr2ib) ([raw file](https://github.com/adrianharabula/condr/blob/31aacc7d798578fdd68c6892aa6ec598963a358d/app/app/Http/Controllers/ContactFormController.php#L10)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt; {
-&gt;     public function getFormController() {
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+> {
+>     public function getFormController() {
+> ```
 
 this needs to be completed
 
 ---
 
 *[app/app/Http/Controllers/ProductsController.php, line 64 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/146#-Kl8O5rC1_dCc5t9yXnb:-Kl8O5rC1_dCc5t9yXnc:b-ks2ge0) ([raw file](https://github.com/adrianharabula/condr/blob/31aacc7d798578fdd68c6892aa6ec598963a358d/app/app/Http/Controllers/ProductsController.php#L64)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     {
-&gt;         return view(&#x27;product.list&#x27;)
-&gt;             -&gt;with(&#x27;products&#x27;,$this-&gt;_productRepository-&gt;searchProducts($data));
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     {
+>         return view('product.list')
+>             ->with('products',$this->_productRepository->searchProducts($data));
+> ```
 
 aici avem noul search nativ
 
 ---
 
 *[app/app/Http/Controllers/StaticPageController.php, line 11 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/146#-Kl8OKw8Cy9M4KxUStKV:-Kl8OKw8Cy9M4KxUStKW:b-s8u38g) ([raw file](https://github.com/adrianharabula/condr/blob/31aacc7d798578fdd68c6892aa6ec598963a358d/app/app/Http/Controllers/StaticPageController.php#L11)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     public function staticPage()
-&gt;     {
-&gt;         return view(&#x27;static&#x27;.request()-&gt;route()-&gt;getName());
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     public function staticPage()
+>     {
+>         return view('static'.request()->route()->getName());
+> ```
 
 avem aici un controller care procesează paginili statice, nu e nevoie să ai câte un controller pentru fiecare rută statică
 
 ---
 
 *[app/routes/web.php, line 110 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/146#-Kl8PDV_1Q19IzUQt_ik:-Kl8PDV_1Q19IzUQt_il:b-up6mrv) ([raw file](https://github.com/adrianharabula/condr/blob/31aacc7d798578fdd68c6892aa6ec598963a358d/app/routes/web.php#L110)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt; Route::get(&#x27;{route}&#x27;, function ($route) {
-&gt;     return view(&#x27;static.&#x27;.$route);
-&gt; });
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+> Route::get('{route}', function ($route) {
+>     return view('static.'.$route);
+> });
+> ```
 
 aici nici nu mai avem nevoie de controller pentru routes statice :))
 
@@ -4336,7 +4291,7 @@ aici nici nu mai avem nevoie de controller pentru routes statice :))
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/146)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**elis47**](https://github.com/adrianharabula/condr/pull/146#issuecomment-304516276) on: **5/28/2017**
@@ -4353,7 +4308,7 @@ Review status: 1 of 47 files reviewed at latest revision, 7 unresolved discussio
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/146)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**elis47**](https://github.com/adrianharabula/condr/pull/146#issuecomment-304516389) on: **5/28/2017**
@@ -4370,7 +4325,7 @@ Review status: 2 of 47 files reviewed at latest revision, 7 unresolved discussio
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/146)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [ads documentation draft](https://github.com/adrianharabula/condr/pull/147)
 
@@ -4378,9 +4333,9 @@ Review status: 2 of 47 files reviewed at latest revision, 7 unresolved discussio
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/147)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/147)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4393,7 +4348,7 @@ Un exemplu complet a ceea ce trebuie noi să avem la sfârşit este un proiect d
 
 Documentaţia noastră va avea de asemenea 2 părţi (2 documente diferite):
 ## Manualul utilizatorului
-exemplu live [aici](http://students.info.uaic.ro/~dordorut.calcai/BooM_user_manual.pdf), documentul nostru [aici](https://docs.google.com/document/d/1-VdK5yVuo_foDSJQWXrnwwmNm3sMfgaGezPBLMx7D2Q/edit?usp&#x3D;sharing)
+exemplu live [aici](http://students.info.uaic.ro/~dordorut.calcai/BooM_user_manual.pdf), documentul nostru [aici](https://docs.google.com/document/d/1-VdK5yVuo_foDSJQWXrnwwmNm3sMfgaGezPBLMx7D2Q/edit?usp=sharing)
 - luăm fiecare pagină în parte şi o povestim
 - povestim userului normal aplicaţia
 
@@ -4455,202 +4410,202 @@ API-uri disponibile am avea:
 - https://upcdatabase.org
 
 Exemplu răspuns upcitemdb:
-Request url: https://api.upcitemdb.com/prod/trial/lookup?upc&#x3D;885909918188
+Request url: https://api.upcitemdb.com/prod/trial/lookup?upc=885909918188
 Response body:
-&#x60;&#x60;&#x60;json
+```json
 {
-  &quot;code&quot;: &quot;OK&quot;,
-  &quot;total&quot;: 1,
-  &quot;offset&quot;: 0,
-  &quot;items&quot;: [
+  "code": "OK",
+  "total": 1,
+  "offset": 0,
+  "items": [
     {
-      &quot;ean&quot;: &quot;0885909918188&quot;,
-      &quot;title&quot;: &quot;Apple MacBook Pro 13.3&amp;quot; Retina Display Notebook Computer 2.7GHz Dual-core Intel Core i5 (Broadwell) 8GB DDR3 RAM 256GB PCIe Flash Storage (Early 2015)&quot;,
-      &quot;description&quot;: &quot;A Spectacular display is just the beginning   A groundbreaking Retina display. A new force-sensing trackpad. All-flash architecture. Powerful dual-core and quad-core Intel processors. Together, these features take the notebook to a new level of performanc&quot;,
-      &quot;upc&quot;: &quot;885909918188&quot;,
-      &quot;brand&quot;: &quot;Apple&quot;,
-      &quot;model&quot;: &quot;MF840LL/A&quot;,
-      &quot;color&quot;: &quot;Silver&quot;,
-      &quot;size&quot;: &quot;13.3in. Retin A Display&quot;,
-      &quot;dimension&quot;: &quot;&quot;,
-      &quot;weight&quot;: &quot;&quot;,
-      &quot;currency&quot;: &quot;&quot;,
-      &quot;lowest_recorded_price&quot;: 250,
-      &quot;images&quot;: [
-        &quot;http://images.highspeedbackbone.net/SKUimages/large/40300998_vmain01_at_mn_4719591.jpg&quot;,
-        &quot;https://i5.walmartimages.com/asr/19d6cafd-e520-4a6f-b6c3-3ddcbc2cbfe5_1.b191d88d51a33125c7334c23ccafd17c.jpeg?odnHeight&#x3D;450&amp;odnWidth&#x3D;450&amp;odnBg&#x3D;ffffff&quot;,
-        &quot;http://img.bbystatic.com/BestBuy_US/images/products/8532/8532029_sc.jpg&quot;,
-        &quot;http://img1.r10.io/PIC/100026633/0/1/250/100026633.jpg&quot;,
-        &quot;http://images.frys.com/art/product/300x300/8408658.01.prod.jpg&quot;,
-        &quot;http://image1.cc-inc.com/prod/13446000/13446712_xlg.jpg&quot;,
-        &quot;http://images.qvc.com/is/image/e/03/e282303.001?$uslarge$&quot;,
-        &quot;http://images10.newegg.com/ProductImageCompressAll200/A5E6_1_20150416344022063.jpg&quot;,
-        &quot;http://www.adorama.com/images/large/ACMF840LLA.JPG&quot;,
-        &quot;http://images.prosperentcdn.com/images/250x250/content.abt.com/media/images/products/l_MF841LLA.jpg&quot;
+      "ean": "0885909918188",
+      "title": "Apple MacBook Pro 13.3&quot; Retina Display Notebook Computer 2.7GHz Dual-core Intel Core i5 (Broadwell) 8GB DDR3 RAM 256GB PCIe Flash Storage (Early 2015)",
+      "description": "A Spectacular display is just the beginning   A groundbreaking Retina display. A new force-sensing trackpad. All-flash architecture. Powerful dual-core and quad-core Intel processors. Together, these features take the notebook to a new level of performanc",
+      "upc": "885909918188",
+      "brand": "Apple",
+      "model": "MF840LL/A",
+      "color": "Silver",
+      "size": "13.3in. Retin A Display",
+      "dimension": "",
+      "weight": "",
+      "currency": "",
+      "lowest_recorded_price": 250,
+      "images": [
+        "http://images.highspeedbackbone.net/SKUimages/large/40300998_vmain01_at_mn_4719591.jpg",
+        "https://i5.walmartimages.com/asr/19d6cafd-e520-4a6f-b6c3-3ddcbc2cbfe5_1.b191d88d51a33125c7334c23ccafd17c.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff",
+        "http://img.bbystatic.com/BestBuy_US/images/products/8532/8532029_sc.jpg",
+        "http://img1.r10.io/PIC/100026633/0/1/250/100026633.jpg",
+        "http://images.frys.com/art/product/300x300/8408658.01.prod.jpg",
+        "http://image1.cc-inc.com/prod/13446000/13446712_xlg.jpg",
+        "http://images.qvc.com/is/image/e/03/e282303.001?$uslarge$",
+        "http://images10.newegg.com/ProductImageCompressAll200/A5E6_1_20150416344022063.jpg",
+        "http://www.adorama.com/images/large/ACMF840LLA.JPG",
+        "http://images.prosperentcdn.com/images/250x250/content.abt.com/media/images/products/l_MF841LLA.jpg"
       ],
-      &quot;offers&quot;: [
+      "offers": [
         {
-          &quot;merchant&quot;: &quot;Abt&quot;,
-          &quot;domain&quot;: &quot;abt.com&quot;,
-          &quot;title&quot;: &quot;Apple MacBook Pro 13.3\&quot;\&quot; With Retina Display 2.7GHz Intel Core i5 Laptop Computer&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 1463.7,
-          &quot;shipping&quot;: &quot;&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2s233230363b4d4y2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;a91fdcbd73c8bd4e60a9714aeee31a9d&quot;,
-          &quot;updated_t&quot;: 1465780889
+          "merchant": "Abt",
+          "domain": "abt.com",
+          "title": "Apple MacBook Pro 13.3\"\" With Retina Display 2.7GHz Intel Core i5 Laptop Computer",
+          "currency": "",
+          "list_price": "",
+          "price": 1463.7,
+          "shipping": "",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2s233230363b4d4y2&tid=1&seq=1495966973&plt=a91fdcbd73c8bd4e60a9714aeee31a9d",
+          "updated_t": 1465780889
         },
         {
-          &quot;merchant&quot;: &quot;Adorama&quot;,
-          &quot;domain&quot;: &quot;adorama.com&quot;,
-          &quot;title&quot;: &quot;Apple MacBook Pro 13.3&amp;quot; Retina Display Notebook Computer 2.7GHz Dual-core Intel Core i5 (Broadwell) 8GB DDR3 RAM 256GB PCIe Flash Storage (Early 2015)&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 1399,
-          &quot;shipping&quot;: &quot;Free Shipping&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2q2y2t20333f4d4v2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;3a991c30da14501f7312723dad5d133c&quot;,
-          &quot;updated_t&quot;: 1474863552
+          "merchant": "Adorama",
+          "domain": "adorama.com",
+          "title": "Apple MacBook Pro 13.3&quot; Retina Display Notebook Computer 2.7GHz Dual-core Intel Core i5 (Broadwell) 8GB DDR3 RAM 256GB PCIe Flash Storage (Early 2015)",
+          "currency": "",
+          "list_price": "",
+          "price": 1399,
+          "shipping": "Free Shipping",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2q2y2t20333f4d4v2&tid=1&seq=1495966973&plt=3a991c30da14501f7312723dad5d133c",
+          "updated_t": 1474863552
         },
         {
-          &quot;merchant&quot;: &quot;Newegg.com&quot;,
-          &quot;domain&quot;: &quot;newegg.com&quot;,
-          &quot;title&quot;: &quot;Apple MacBook Pro Core i5 2.7GHz (Broadwell) 256GB SSD 8GB 13.3\&quot; Retina (2560x1600) BT Mac OS X 10.10 Yosemite FaceTime Camera (Early 2015)&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 1400,
-          &quot;shipping&quot;: &quot;19.99&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;v2p213x2z213e4d4v2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;deb4f6650100517f14a271418d220b45&quot;,
-          &quot;updated_t&quot;: 1479210487
+          "merchant": "Newegg.com",
+          "domain": "newegg.com",
+          "title": "Apple MacBook Pro Core i5 2.7GHz (Broadwell) 256GB SSD 8GB 13.3\" Retina (2560x1600) BT Mac OS X 10.10 Yosemite FaceTime Camera (Early 2015)",
+          "currency": "",
+          "list_price": "",
+          "price": 1400,
+          "shipping": "19.99",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=v2p213x2z213e4d4v2&tid=1&seq=1495966973&plt=deb4f6650100517f14a271418d220b45",
+          "updated_t": 1479210487
         },
         {
-          &quot;merchant&quot;: &quot;QVC.com&quot;,
-          &quot;domain&quot;: &quot;qvc.com&quot;,
-          &quot;title&quot;: &quot;Apple 13\&quot; MacBook Pro - Core i5, 8GB RAM, 256GB SSD &amp; Software&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: 2449.96,
-          &quot;price&quot;: 2229.96,
-          &quot;shipping&quot;: &quot;26.22&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2q213u2w21394c4z2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;40ad7a815d023aff6248c1274a3e0047&quot;,
-          &quot;updated_t&quot;: 1495194894
+          "merchant": "QVC.com",
+          "domain": "qvc.com",
+          "title": "Apple 13\" MacBook Pro - Core i5, 8GB RAM, 256GB SSD & Software",
+          "currency": "",
+          "list_price": 2449.96,
+          "price": 2229.96,
+          "shipping": "26.22",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2q213u2w21394c4z2&tid=1&seq=1495966973&plt=40ad7a815d023aff6248c1274a3e0047",
+          "updated_t": 1495194894
         },
         {
-          &quot;merchant&quot;: &quot;MacMall&quot;,
-          &quot;domain&quot;: &quot;macmall.com&quot;,
-          &quot;title&quot;: &quot;Apple MF840LL/A 13.3 MacBook Pro with Retina display  Dual-core Intel Core i5 2.7GHz (5th generation processor)  8GB RAM  256GB PCIe-based flash storage  Intel&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: 1499,
-          &quot;price&quot;: 1449,
-          &quot;shipping&quot;: &quot;0&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2q2y2u203y2a484s2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;05ee68a4c8840f1d1d98683c2b4fd5ea&quot;,
-          &quot;updated_t&quot;: 1493828651
+          "merchant": "MacMall",
+          "domain": "macmall.com",
+          "title": "Apple MF840LL/A 13.3 MacBook Pro with Retina display  Dual-core Intel Core i5 2.7GHz (5th generation processor)  8GB RAM  256GB PCIe-based flash storage  Intel",
+          "currency": "",
+          "list_price": 1499,
+          "price": 1449,
+          "shipping": "0",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2q2y2u203y2a484s2&tid=1&seq=1495966973&plt=05ee68a4c8840f1d1d98683c2b4fd5ea",
+          "updated_t": 1493828651
         },
         {
-          &quot;merchant&quot;: &quot;Frys Electronics&quot;,
-          &quot;domain&quot;: &quot;frys.com&quot;,
-          &quot;title&quot;: &quot;NEW! Apple 13.3\&quot; MacBook Pro with Retina display, Dual-core Intel Core i5 2.7GHz (5th generation processor), 8GB RAM, 256GB PCIe-based flash storage, Intel Iris Graphics 6100, Two Thunderbolt 2 ports, 802.11ac Wi-Fi, 10 hours of battery life, OS X Yosemit&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 826.2,
-          &quot;shipping&quot;: &quot;&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2r2y2u2w2z29454u2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;71b0016c76923334976e1e1276fcb654&quot;,
-          &quot;updated_t&quot;: 1488643982
+          "merchant": "Frys Electronics",
+          "domain": "frys.com",
+          "title": "NEW! Apple 13.3\" MacBook Pro with Retina display, Dual-core Intel Core i5 2.7GHz (5th generation processor), 8GB RAM, 256GB PCIe-based flash storage, Intel Iris Graphics 6100, Two Thunderbolt 2 ports, 802.11ac Wi-Fi, 10 hours of battery life, OS X Yosemit",
+          "currency": "",
+          "list_price": "",
+          "price": 826.2,
+          "shipping": "",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2r2y2u2w2z29454u2&tid=1&seq=1495966973&plt=71b0016c76923334976e1e1276fcb654",
+          "updated_t": 1488643982
         },
         {
-          &quot;merchant&quot;: &quot;Rakuten(Buy.com)&quot;,
-          &quot;domain&quot;: &quot;rakuten.com&quot;,
-          &quot;title&quot;: &quot;Apple MacBook Pro 13-inch - Retina 2.7Ghz 8GB 256GB - Mar 2015 / MF840LL/A Apple MacBook Pro MF840LL/A 13.3-Inch Laptop with Retina Display (256 GB) NEWEST VERSION&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 1456.39,
-          &quot;shipping&quot;: &quot;Free Shipping&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;Out of Stock&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2q2z2x233z2d454r2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;99f13618f01e1dff11e4be71651ba804&quot;,
-          &quot;updated_t&quot;: 1495830797
+          "merchant": "Rakuten(Buy.com)",
+          "domain": "rakuten.com",
+          "title": "Apple MacBook Pro 13-inch - Retina 2.7Ghz 8GB 256GB - Mar 2015 / MF840LL/A Apple MacBook Pro MF840LL/A 13.3-Inch Laptop with Retina Display (256 GB) NEWEST VERSION",
+          "currency": "",
+          "list_price": "",
+          "price": 1456.39,
+          "shipping": "Free Shipping",
+          "condition": "New",
+          "availability": "Out of Stock",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2q2z2x233z2d454r2&tid=1&seq=1495966973&plt=99f13618f01e1dff11e4be71651ba804",
+          "updated_t": 1495830797
         },
         {
-          &quot;merchant&quot;: &quot;Best Buy&quot;,
-          &quot;domain&quot;: &quot;bestbuy.com&quot;,
-          &quot;title&quot;: &quot;Apple - Macbook Pro With Retina Display (latest Model) - 13.3\&quot; Display - 8gb Memory - 256gb Flash Storage - Silver&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 1499.99,
-          &quot;shipping&quot;: &quot;&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2q2y2y243z2a494t2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;675f0e0e62217e008130da95bf5559c4&quot;,
-          &quot;updated_t&quot;: 1486163626
+          "merchant": "Best Buy",
+          "domain": "bestbuy.com",
+          "title": "Apple - Macbook Pro With Retina Display (latest Model) - 13.3\" Display - 8gb Memory - 256gb Flash Storage - Silver",
+          "currency": "",
+          "list_price": "",
+          "price": 1499.99,
+          "shipping": "",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2q2y2y243z2a494t2&tid=1&seq=1495966973&plt=675f0e0e62217e008130da95bf5559c4",
+          "updated_t": 1486163626
         },
         {
-          &quot;merchant&quot;: &quot;Wal-Mart.com&quot;,
-          &quot;domain&quot;: &quot;walmart.com&quot;,
-          &quot;title&quot;: &quot;Apple MacBook Pro 13\&quot; Retina Display MF840LLA Intel Core i5 2.7GHz 8GB 256GB SSD&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 2499.99,
-          &quot;shipping&quot;: &quot;Free Shipping&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;Out of Stock&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2r2x2v223z264d4u2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;68d38043ead4b8c58b21e94c52f8bf48&quot;,
-          &quot;updated_t&quot;: 1495839438
+          "merchant": "Wal-Mart.com",
+          "domain": "walmart.com",
+          "title": "Apple MacBook Pro 13\" Retina Display MF840LLA Intel Core i5 2.7GHz 8GB 256GB SSD",
+          "currency": "",
+          "list_price": "",
+          "price": 2499.99,
+          "shipping": "Free Shipping",
+          "condition": "New",
+          "availability": "Out of Stock",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2r2x2v223z264d4u2&tid=1&seq=1495966973&plt=68d38043ead4b8c58b21e94c52f8bf48",
+          "updated_t": 1495839438
         },
         {
-          &quot;merchant&quot;: &quot;TigerDirect&quot;,
-          &quot;domain&quot;: &quot;tigerdirect.com&quot;,
-          &quot;title&quot;: &quot;Apple MacBook Pro - MF840LL/A&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 1494,
-          &quot;shipping&quot;: &quot;&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;v2p24323y2637464s2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;66b097fc123d469aeb62b2848a4808f0&quot;,
-          &quot;updated_t&quot;: 1495919811
+          "merchant": "TigerDirect",
+          "domain": "tigerdirect.com",
+          "title": "Apple MacBook Pro - MF840LL/A",
+          "currency": "",
+          "list_price": "",
+          "price": 1494,
+          "shipping": "",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=v2p24323y2637464s2&tid=1&seq=1495966973&plt=66b097fc123d469aeb62b2848a4808f0",
+          "updated_t": 1495919811
         },
         {
-          &quot;merchant&quot;: &quot;Blinq.com&quot;,
-          &quot;domain&quot;: &quot;blinq.com&quot;,
-          &quot;title&quot;: &quot;Apple MacBook Pro 13.3in Laptop i5 3.1GHz 8GB 512GB Mac OS X (MF843LL/A)&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 1510.39,
-          &quot;shipping&quot;: &quot;&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;u2x2531323y2c464x2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;0124fecae18fb0c7ba7597c53ba0280c&quot;,
-          &quot;updated_t&quot;: 1478056130
+          "merchant": "Blinq.com",
+          "domain": "blinq.com",
+          "title": "Apple MacBook Pro 13.3in Laptop i5 3.1GHz 8GB 512GB Mac OS X (MF843LL/A)",
+          "currency": "",
+          "list_price": "",
+          "price": 1510.39,
+          "shipping": "",
+          "condition": "New",
+          "availability": "",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=u2x2531323y2c464x2&tid=1&seq=1495966973&plt=0124fecae18fb0c7ba7597c53ba0280c",
+          "updated_t": 1478056130
         },
         {
-          &quot;merchant&quot;: &quot;Newegg Business&quot;,
-          &quot;domain&quot;: &quot;neweggbusiness.com&quot;,
-          &quot;title&quot;: &quot;Apple MacBook Pro Core i5 2.7GHz (Broadwell) 256GB SSD 8GB 13.3\&quot; Retina (2560x1600) BT Mac OS X 10.10 Yosemite FaceTime Camera (Early 2015)&quot;,
-          &quot;currency&quot;: &quot;&quot;,
-          &quot;list_price&quot;: &quot;&quot;,
-          &quot;price&quot;: 1527.69,
-          &quot;shipping&quot;: &quot;Free Shipping&quot;,
-          &quot;condition&quot;: &quot;New&quot;,
-          &quot;availability&quot;: &quot;Out of Stock&quot;,
-          &quot;link&quot;: &quot;http://www.upcitemdb.com/norob/alink/?id&#x3D;v2o263v2y2337464z2&amp;tid&#x3D;1&amp;seq&#x3D;1495966973&amp;plt&#x3D;4a640983f6c43696ba10ec5c19027b3b&quot;,
-          &quot;updated_t&quot;: 1495894981
+          "merchant": "Newegg Business",
+          "domain": "neweggbusiness.com",
+          "title": "Apple MacBook Pro Core i5 2.7GHz (Broadwell) 256GB SSD 8GB 13.3\" Retina (2560x1600) BT Mac OS X 10.10 Yosemite FaceTime Camera (Early 2015)",
+          "currency": "",
+          "list_price": "",
+          "price": 1527.69,
+          "shipping": "Free Shipping",
+          "condition": "New",
+          "availability": "Out of Stock",
+          "link": "http://www.upcitemdb.com/norob/alink/?id=v2o263v2y2337464z2&tid=1&seq=1495966973&plt=4a640983f6c43696ba10ec5c19027b3b",
+          "updated_t": 1495894981
         }
       ],
-      &quot;elid&quot;: &quot;152538538811&quot;
+      "elid": "152538538811"
     }
   ]
 }
-&#x60;&#x60;&#x60;
+```
 
 ### Comments
 
@@ -4685,7 +4640,7 @@ Paşii ca să scanăm cod de bare ar fi
 
 1. să găsim un cititor de carduri pe telefon/pc(pe telefon avem [ionic](https://ionicframework.com/docs/native/barcode-scanner/)) (de partea asta mă pot ocupa eu)
 3. trimitem codul de bare într-un request la aplicaţia noastră laravel: ex: [condr.me/lookup/885909918188](condr.me/lookup/885909918188)
-4. din laravel facem un request către unul sau mai multe apiuri care pot procesa acest cod, de exemplu [https://api.upcitemdb.com/prod/trial/lookup?upc&#x3D;885909918188](https://api.upcitemdb.com/prod/trial/lookup?upc&#x3D;885909918188) Folosim guzzle http pentru asta. Mai multe info [aici](http://wern-ancheta.com/blog/2016/01/20/making-http-requests-with-guzzle/)
+4. din laravel facem un request către unul sau mai multe apiuri care pot procesa acest cod, de exemplu [https://api.upcitemdb.com/prod/trial/lookup?upc=885909918188](https://api.upcitemdb.com/prod/trial/lookup?upc=885909918188) Folosim guzzle http pentru asta. Mai multe info [aici](http://wern-ancheta.com/blog/2016/01/20/making-http-requests-with-guzzle/)
 3. datele obţinute de aici, sunt în format json, le putem folosi cum vrem noi
 4. end of story
 ---
@@ -4706,16 +4661,16 @@ Am putea folosi extensia asta https://github.com/milon/barcode
 ![image](https://cloud.githubusercontent.com/assets/2271038/26752062/28074938-4850-11e7-95f0-9cea964c1602.png)
 
 https://www.barcoderobot.com/ean-13/0123456789012/
-# [Revert &quot;Major refactoring; implements Repository Pattern and many more&quot;](https://github.com/adrianharabula/condr/pull/151)
+# [Revert "Major refactoring; implements Repository Pattern and many more"](https://github.com/adrianharabula/condr/pull/151)
 
 > state: **closed** opened by: **elis47** on: **5/28/2017**
 
-Reverts adrianharabula/condr#146 cause i can&#x27;t review all files
+Reverts adrianharabula/condr#146 cause i can't review all files
 
-&lt;!-- Reviewable:start --&gt;
+<!-- Reviewable:start -->
 ---
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/151)
-&lt;!-- Reviewable:end --&gt;
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/151)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4731,10 +4686,10 @@ Now these are tested and working
 
 https://github.com/adrianharabula/condr/wiki/Routes-list/caca4f7a5ae1d330c33fb43503397399abbfcc23
 
-&lt;!-- Reviewable:start --&gt;
+<!-- Reviewable:start -->
 ---
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/152)
-&lt;!-- Reviewable:end --&gt;
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/152)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4754,7 +4709,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/152)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**elis47**](https://github.com/adrianharabula/condr/pull/152#issuecomment-304523802) on: **5/28/2017**
@@ -4766,9 +4721,9 @@ GOOOOD JOOOB!!!!!
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/153)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/153)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4788,7 +4743,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/153)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [Display no favorited products for my/products page](https://github.com/adrianharabula/condr/issues/154)
 
@@ -4804,7 +4759,7 @@ Currently nothing is dispalyed.
 
 > state: **open** opened by: **adrianharabula** on: **5/29/2017**
 
-I know it&#x27;s possible, and simple... but... how!?
+I know it's possible, and simple... but... how!?
 
 ### Comments
 
@@ -4818,9 +4773,9 @@ I know it&#x27;s possible, and simple... but... how!?
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/156)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/156)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4838,22 +4793,22 @@ Review status: 14 of 15 files reviewed at latest revision, 2 unresolved discussi
 ---
 
 *[app/database/migrations/2017_05_07_000028_create_votes_table.php, line 16 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/156#-KlPtr2D3ksKMkEbVCwe:-KlPtr2D3ksKMkEbVCwf:b-1sgxkf) ([raw file](https://github.com/adrianharabula/condr/blob/b3be0a94f79af7e9a7c4c2819b53cdd63266bd3f/app/database/migrations/2017_05_07_000028_create_votes_table.php#L16)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;         Schema::create(&#x27;votes&#x27;, function (Blueprint $table) {
-&gt;             $table-&gt;increments(&#x27;id&#x27;);
-&gt;             $table-&gt;integer(&#x27;value&#x27;);
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>         Schema::create('votes', function (Blueprint $table) {
+>             $table->increments('id');
+>             $table->integer('value');
+> ```
 
-that&#x27;s much better column name!
+that's much better column name!
 
 ---
 
 *[app/database/migrations/2017_05_07_000030_create_characteristics_table.php, line 21 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/156#-KlPtxa3V79rm2RzRg9n:-KlPtxa3V79rm2RzRg9o:brrqqim) ([raw file](https://github.com/adrianharabula/condr/blob/b3be0a94f79af7e9a7c4c2819b53cdd63266bd3f/app/database/migrations/2017_05_07_000030_create_characteristics_table.php#L21)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;             $table-&gt;string(&#x27;values&#x27;);
-&gt;             $table-&gt;integer(&#x27;category_id&#x27;)-&gt;unsigned()-&gt;nullable();
-&gt;             $table-&gt;foreign(&#x27;category_id&#x27;)-&gt;references(&#x27;id&#x27;)-&gt;on(&#x27;categories&#x27;);
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>             $table->string('values');
+>             $table->integer('category_id')->unsigned()->nullable();
+>             $table->foreign('category_id')->references('id')->on('categories');
+> ```
 
 fie cum zici tu :))
 
@@ -4861,7 +4816,7 @@ fie cum zici tu :))
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/156)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/156#issuecomment-305105370) on: **5/31/2017**
@@ -4873,9 +4828,9 @@ fixed conflicts!!!!!!
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/157)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/157)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4884,12 +4839,12 @@ This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg
 
 > state: **closed** opened by: **elis47** on: **5/31/2017**
 
-few bugs on delete buttons &amp; 2 routes not working; work in progress
+few bugs on delete buttons & 2 routes not working; work in progress
 
-&lt;!-- Reviewable:start --&gt;
+<!-- Reviewable:start -->
 ---
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/158)
-&lt;!-- Reviewable:end --&gt;
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/158)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4907,11 +4862,11 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 ---
 
 *[app/resources/views/includes/navbar.blade.php, line 42 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/158#-KlV2_dGMfTnpgC1O-Yj:-KlV2_dGMfTnpgC1O-Yk:b-8fx2u7) ([raw file](https://github.com/adrianharabula/condr/blob/ef411b397747e402d0e292b93009dffbb6143de6/app/resources/views/includes/navbar.blade.php#L42)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;                       &lt;ul class&#x3D;&quot;dropdown-menu my-profile&quot;&gt;
-&gt;                         &lt;li&gt;&lt;a href&#x3D;&quot;{{ route(&#x27;my.account.index&#x27;) }}&quot;&gt;My Account&lt;/a&gt;&lt;/li&gt;
-&gt;                         &lt;li&gt;&lt;a href&#x3D;&quot;{{ route(&#x27;my.preferences.listpreferences&#x27;) }}&quot;&gt;My Preferences&lt;/a&gt;&lt;/li&gt;
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>                       <ul class="dropdown-menu my-profile">
+>                         <li><a href="{{ route('my.account.index') }}">My Account</a></li>
+>                         <li><a href="{{ route('my.preferences.listpreferences') }}">My Preferences</a></li>
+> ```
 
 :+1: 
 
@@ -4919,7 +4874,7 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/158)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [Eroare la rularea migrării](https://github.com/adrianharabula/condr/issues/159)
 
@@ -4950,7 +4905,7 @@ Paşi reproducere:
 
 Formularul pentru butonul delete trebuie făcut ca aici https://github.com/adrianharabula/condr/blob/master/app/resources/views/user/favorited-products.blade.php#L67-L76
 
-that&#x27;s it :))
+that's it :))
 
 ### Comments
 
@@ -4960,9 +4915,9 @@ that&#x27;s it :))
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/162)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/162)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4973,9 +4928,9 @@ This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/163)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/163)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -4987,7 +4942,7 @@ In lookupcontroller sunt requesturile cu apiul de la github. Pierd eu ceva sau m
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/163#issuecomment-305554041) on: **6/1/2017**
 
-&lt;img class&#x3D;&quot;emoji&quot; title&#x3D;&quot;:lgtm:&quot; alt&#x3D;&quot;:lgtm:&quot; align&#x3D;&quot;absmiddle&quot; src&#x3D;&quot;https://reviewable.io/lgtm.png&quot; height&#x3D;&quot;20&quot; width&#x3D;&quot;61&quot;/&gt;
+<img class="emoji" title=":lgtm:" alt=":lgtm:" align="absmiddle" src="https://reviewable.io/lgtm.png" height="20" width="61"/>
 
 ---
 
@@ -4999,7 +4954,7 @@ Review status: all files reviewed at latest revision, all discussions resolved, 
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/163#-:-KlZZR1ZTvvH4AwHsREy:bnfp4nl)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/163#issuecomment-305562276) on: **6/1/2017**
@@ -5014,11 +4969,11 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion, s
 ---
 
 *[app/app/Http/Controllers/LookupController.php, line 13 at r3](https://reviewable.io:443/reviews/adrianharabula/condr/163#-KlZfJ6_zAbS-A6z20gq:-KlZfJ6_zAbS-A6z20gr:b-aujmeo) ([raw file](https://github.com/adrianharabula/condr/blob/46ef9d186ea917d44602c5d6cecbb7a10012fa76/app/app/Http/Controllers/LookupController.php#L13)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     public function index ()
-&gt;     {
-&gt;         $client &#x3D; new \GuzzleHttp\Client(array( &#x27;curl&#x27; &#x3D;&gt; array( CURLOPT_SSL_VERIFYPEER &#x3D;&gt; false, ), ));
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>     public function index ()
+>     {
+>         $client = new \GuzzleHttp\Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false, ), ));
+> ```
 
 modificarea asta e numai pentru la tine :)) pe live o sa vrem sa avem verificarea
 
@@ -5026,7 +4981,7 @@ modificarea asta e numai pentru la tine :)) pe live o sa vrem sa avem verificare
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/163)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [added pagination, changes at groups page (now, works the buttons for delete a group and appear all error messages for join and delete )](https://github.com/adrianharabula/condr/pull/164)
 
@@ -5034,9 +4989,9 @@ modificarea asta e numai pentru la tine :)) pe live o sa vrem sa avem verificare
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/164)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [<img src="https://reviewable.io/review_button.svg" height="34" align="absmiddle" alt="Reviewable"/>](https://reviewable.io/reviews/adrianharabula/condr/164)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -5054,19 +5009,19 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 ---
 
 *[app/resources/views/user/favorited-groups.blade.php, line 37 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/164#-KlZgqld05NebPoQtLRF:-KlZgqlem3pdFbgs6DnD:beopjgg) ([raw file](https://github.com/adrianharabula/condr/blob/48c8d46c8be1a9cb82b03c498686a4a6f476afc8/app/resources/views/user/favorited-groups.blade.php#L37)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;                &lt;/div&gt;
-&gt;                &lt;div class&#x3D;&quot;col-md-2&quot;&gt;
-&gt;                   {!! Form::open([&#x27;method&#x27; &#x3D;&gt; &#x27;DELETE&#x27;, &#x27;url&#x27;&#x3D;&gt; route(&#x27;my.group.delete&#x27;, $group-&gt;id)]) !!}
-&gt; &#x60;&#x60;&#x60;
+> ```PHP
+>                </div>
+>                <div class="col-md-2">
+>                   {!! Form::open(['method' => 'DELETE', 'url'=> route('my.group.delete', $group->id)]) !!}
+> ```
 
-de ce aici nu merge deschis formularul cu {{ simplu?
+de ce aici nu merge deschis formularul cu "{{" simplu?
 
 ---
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/164)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [instrucţiuni pentru noul seeder](https://github.com/adrianharabula/condr/issues/165)
 
@@ -5081,7 +5036,7 @@ php artisan migrate:refresh --seed should work
 iar la adresa localhost:8000/lookup avem api-ul
 codul de bare e pus by default in api si va va insera macbook air in baza de date cand intrati pe adresa aia 🙂
 daca vrei sa inserati si alte produse, cautati codul de bare si schinbati-l din lookupcontroller ca sa populam baza de date cu produse relevante
-for any further questions, i&#x27;ll be on the phone :))
+for any further questions, i'll be on the phone :))
 
 Instrucţiunile aparţin @elis47 
 
@@ -5114,9 +5069,9 @@ Instrucţiunile aparţin @elis47
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/168)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [Reviewable](https://reviewable.io/reviews/adrianharabula/condr/168)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -5134,11 +5089,6 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 ---
 
 *[app/resources/views/layouts/app.blade.php, line 36 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/168#-Klhfl25rGbBTvx_FU9F:-Klhfl25rGbBTvx_FU9G:b-crr5kk) ([raw file](https://github.com/adrianharabula/condr/blob/15e17050a7d835a0a571ba6276b22e04b78f8ba4/app/resources/views/layouts/app.blade.php#L36)):*
-&gt; &#x60;&#x60;&#x60;PHP
-&gt;     &lt;/script&gt;
-&gt; 
-&gt;     &lt;script src&#x3D;&quot;//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js&quot;&gt;&lt;/script&gt;
-&gt; &#x60;&#x60;&#x60;
 
 o sa vedem cum facem cu jquery, tre pusa versiune compatibila cu bootstrap.
 
@@ -5146,7 +5096,7 @@ o sa vedem cum facem cu jquery, tre pusa versiune compatibila cu bootstrap.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/168)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/168#issuecomment-305968804) on: **6/3/2017**
@@ -5160,14 +5110,14 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 ---
 
 *[app/resources/views/layouts/app.blade.php, line 36 at r1](https://reviewable.io:443/reviews/adrianharabula/condr/168#-Klhfl25rGbBTvx_FU9F:-Klhg0RRjMyTk4AhYnfL:b-rquaz7) ([raw file](https://github.com/adrianharabula/condr/blob/15e17050a7d835a0a571ba6276b22e04b78f8ba4/app/resources/views/layouts/app.blade.php#L36)):*
-&gt; …app/resources/views/products/listproducts.blade.phpapp/resources/views/
+> …app/resources/views/products/listproducts.blade.phpapp/resources/views/
 3.2.1 e prea mare, cred cĂ maxim suportat e 3.0.0
 
 ---
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/168)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**elis47**](https://github.com/adrianharabula/condr/pull/168#issuecomment-305971570) on: **6/3/2017**
@@ -5184,7 +5134,7 @@ Review status: 1 of 3 files reviewed at latest revision, 1 unresolved discussion
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/168)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 ---
 > from: [**elis47**](https://github.com/adrianharabula/condr/pull/168#issuecomment-305976434) on: **6/3/2017**
@@ -5201,7 +5151,7 @@ Review status: all files reviewed at latest revision, 1 unresolved discussion.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/168)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [Undefined offset when introducing product with ean 0762309500581](https://github.com/adrianharabula/condr/issues/169)
 
@@ -5221,9 +5171,9 @@ Era problemă atunci când produsul nu avea poză. Fixul a fost să verificăm d
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/170)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [Reviewable](https://reviewable.io/reviews/adrianharabula/condr/170)
+<!-- Reviewable:end -->
 
 
 ### Comments
@@ -5243,7 +5193,7 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 *Comments from [Reviewable](https://reviewable.io:443/reviews/adrianharabula/condr/170)*
-&lt;!-- Sent from Reviewable.io --&gt;
+<!-- Sent from Reviewable.io -->
 
 # [Fixed duplicated entries for offers and characterizables](https://github.com/adrianharabula/condr/pull/171)
 
@@ -5251,9 +5201,9 @@ Review status: all files reviewed at latest revision, all discussions resolved.
 
 
 
-&lt;!-- Reviewable:start --&gt;
-This change is [&lt;img src&#x3D;&quot;https://reviewable.io/review_button.svg&quot; height&#x3D;&quot;34&quot; align&#x3D;&quot;absmiddle&quot; alt&#x3D;&quot;Reviewable&quot;/&gt;](https://reviewable.io/reviews/adrianharabula/condr/171)
-&lt;!-- Reviewable:end --&gt;
+<!-- Reviewable:start -->
+This change is [Reviewable](https://reviewable.io/reviews/adrianharabula/condr/171)
+<!-- Reviewable:end -->
 
 
 ### Comments

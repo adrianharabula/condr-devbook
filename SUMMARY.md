@@ -11,3 +11,6 @@
 
 * [Defining Methods](methods.md)
 
+## Issues
+
+* [All issues](all.md)

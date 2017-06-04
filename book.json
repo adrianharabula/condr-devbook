@@ -1,34 +1,16 @@
 {
     "title": "Consumer Decision Maker",
     "author": "Adrian Harabula",
-    "plugins": [ "theme-api", "autocover" ],
+    "plugins": [ "theme-api"],
     "pluginsConfig": {
         "theme-api": {
-            "languages": [
-                {
-                    "lang": "php",
-                    "name": "PHP",
-                    "default": true
-                },
-                {
-                    "lang": "js",
-                    "name": "javascript"
-                }
-            ]
+            "theme": "dark"
         },
-        "autocover": {
-            "font": {
-                "size": null,
-                "family": "Impact",
-                "color": "#FFF"
-            },
-            "size": {
-                "w": 1800,
-                "h": 2360
-            },
-            "background": {
-                "color": "#09F"
-            }
+        "fontSettings": {
+            "size": 3
         }
+    },
+    "pdf": {
+        "fontSize": 18
     }
 }

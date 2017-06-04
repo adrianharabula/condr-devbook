@@ -14,6 +14,6 @@
 
 ## Issues
 
-* [Issues 1-25](test.md)
+* [Issues 1-25](1-25.md)
 
 

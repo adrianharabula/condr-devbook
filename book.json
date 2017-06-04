@@ -5,9 +5,12 @@
     "pluginsConfig": {
         "theme-api": {
             "theme": "dark"
+        },
+        "mytheme": {
+            "font-family": "Ubuntu"
         }
     },
     "pdf": {
-        "fontSize": 16
+        "fontSize": 14
     }
 }

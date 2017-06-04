@@ -5,6 +5,7 @@
 * [Introduction](README.md)
 * [Authors](inca-o-pagina.md)
 * [Contributing](contributing.md)
+* Index
 
 ## Method
   * working with code

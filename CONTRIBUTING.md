@@ -2,6 +2,8 @@
 
 Hi there! We're thrilled that you'd like to contribute to this project. Your help is essential for keeping it great.
 
+Feel free to create issues or pull-requests if you have any problems. Please read below before pushing any changes.
+
 ## How to make a pull request in 45 seconds
 ![gifrecord_2017-06-04_172436](https://cloud.githubusercontent.com/assets/2271038/26762425/eacc7e48-494a-11e7-84de-076a7cd8d9f3.gif)
 

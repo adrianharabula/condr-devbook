@@ -3,31 +3,23 @@
 ## Overview
 
 * [Introduction](README.md)
-* [Authors](inca-o-pagina.md)
+* [Authors](AUTHORS.md)
 * [Contributing](CONTRIBUTING.md)
-* Index
 
-## Method
-  * working with code
-  * standards
+## Database
 
-## App
+* [Database Schema](pages/schema.md)
+* One to Many Relationships
+* Many to Many Relationships
+* Many to Many Polymorphic Relationships
 
-  ## Database
+## Backend
+* [URL Routing](pages/routes.md)
 
-  * Oracle 11g
-  * Database Schema
-  * One to Many Relationships
-  * Many to Many Relationships
-  * Many to Many Polymorphic Relationships
+## Server
 
-  ## Backend
-  * [URL Routing](routes.md)
-
-  ## Server
-
-  * Docker containers
-  * Automatic deployment
+* Docker containers
+* Automatic deployment
 
 ## Methods
 

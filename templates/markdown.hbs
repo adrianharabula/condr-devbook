@@ -1,0 +1,21 @@
+# [\#{{issueid}} {{title}}]({{url}})
+
+> state: **{{state}}** opened by: **{{created_by}}** on: **{{created_at}}**
+
+{% raw %}
+{{body}}
+{% endraw %}
+
+
+{{#if comments.length}}
+### Comments
+{{/if}}
+
+{{#comments}}
+---
+> from: [**{{user.login}}**]({{html_url}}) on: **{{created_at}}**
+
+{% raw %}
+{{body}}
+{% endraw %}
+{{/comments}}

@@ -1,0 +1,19 @@
+{
+  "name": "condr-devbook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "writemarkdown.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianharabula/condr-devbook.git"
+  },
+  "author": "Adrian Harabula",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrianharabula/condr-devbook/issues"
+  },
+  "homepage": "https://github.com/adrianharabula/condr-devbook#readme",
+  "dependencies": {
+    "handlebars": "^4.0.10"
+  }
+}

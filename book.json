@@ -1,6 +1,6 @@
 {
     "title": "Consumer Decision Maker",
-    "author": "Adrian Harabula",
+    "author": "ConDr team members: Harabulă Adrian, Bulbuc-Aioanei Elisa, Anghelina Elena, Buza Mădălina",
     "plugins": [ "theme-api"],
     "pluginsConfig": {
         "theme-api": {

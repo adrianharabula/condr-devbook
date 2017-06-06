@@ -6,6 +6,7 @@
 * [Authors](AUTHORS.md)
 * [Contributing](CONTRIBUTING.md)
 * [License](LICENSE.md)
+* [Relevant Links](RELEVANT.md)
 
 ## Application
 
@@ -29,6 +30,7 @@
 * [Version naming](pages/versioning.md)
 
 ## Byproducts
+
  * [php7-oci](pages/php7-oci.md)
  * [php7cli-oci](pages/php7cli-oci.md)
  * [super-simple-oci-orm](pages/oci-orm.md)
@@ -225,4 +227,3 @@
 
 ---
  * [Thanks](pages/thanks.md)
- 

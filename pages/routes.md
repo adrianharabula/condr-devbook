@@ -25,14 +25,13 @@
 | VERB   | URI                     | ACTION                                                | ROUTE              |
 |--------|-------------------------|-------------------------------------------------------|--------------------|
 | GET    | /my/products            | User\UserProductsController@getFavoriteProducts       | my.products.listproducts        |
-| POST   | /my/product/{id}/add    | User\UserProductsController@addFavoriteProduct | my.product.add |
-| DELETE | /my/product/{id}/delete | User\UserProductsController@deleteFavoriteProduct | my.product.delete |
+| POST   | /my/product/{id}/add    | User\UserProductsController@addFavoriteProduct        | my.product.add     |
+| DELETE | /my/product/{id}/delete | User\UserProductsController@deleteFavoriteProduct     | my.product.delete  |
 
 ### Groups routes
 
 | VERB   | URI                     | ACTION                                                | ROUTE              |
 |--------|-------------------------|-------------------------------------------------------|--------------------|
-| GET    | /my/groups              | Group\GroupController@getFavoriteGroups       | my.groups.listgroups       |
-| POST   | /my/group/{id}/add      | Group\GroupController@addFavoriteGroup        | my.group.add |
-| DELETE | /my/group/{id}/delete   | Group\GroupController@deleteFavoriteGroup     | my.group.delete |
-
+| GET    | /my/groups              | Group\GroupController@getFavoriteGroups               | my.groups.listgroups       |
+| POST   | /my/group/{id}/add      | Group\GroupController@addFavoriteGroup                | my.group.add       |
+| DELETE | /my/group/{id}/delete   | Group\GroupController@deleteFavoriteGroup             | my.group.delete    |

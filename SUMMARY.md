@@ -6,24 +6,27 @@
 * [Authors](AUTHORS.md)
 * [Contributing](CONTRIBUTING.md)
 
-## Database
+## Application
 
-* [Database Schema](pages/schema.md)
-* One to Many Relationships
-* Many to Many Relationships
-* Many to Many Polymorphic Relationships
+ * [Install instructions](pages/install.md)
+ * [Database Schema](pages/schema.md)
+ * [Many To Many Polymorphic](pages/polymorphic.md)
+ * [Database Query Example](pages/relationships.md)
+ * [App URL Routing](pages/routes.md)
 
-## Backend
-* [URL Routing](pages/routes.md)
+## API's used to gather data
+ * [upcdatabase.org](pages/upcdatabase.md)
+ * [upcitemdb.com](pages/upcitemdb.md)
 
 ## Server
 
-* Docker containers
-* Automatic deployment
+* [Docker containers](pages/docker.md)
+* [Continous delivery](pages/continous.md)
+* [Version naming](pages/versioning.md)
 
-## Methods
-
-* [Defining Methods](methods.md)
+## Byproducts
+ * [php7-oci](pages/php7-oci.md)
+ * [php7cli-oci](pages/php7cli-oci.md)
 
 ## Issues
 
@@ -214,3 +217,4 @@
  * [Pull #185 - fix upc array error](issues/issue-185.md)
  * [Pull #186 - fix upc array error](issues/issue-186.md)
  * [Pull #187 - fix upc array error](issues/issue-187.md)
+ 

@@ -1,0 +1,56 @@
+# Sample docker-compose file
+
+Our application runs in docker environment with the following services:
+
+```yml
+version: '3'
+
+services:
+   oracledb:
+     build:
+       context: ./Dockerfiles/oracledb/
+       dockerfile: Dockerfile
+     image: condr/database
+     restart: always
+     ports:
+      - "1521:1521"
+
+   app:
+     depends_on:
+       - oracledb
+     image: adrianharabula/php7-with-oci8
+     links:
+      - oracledb
+      - apache
+     volumes:
+      - ./app:/var/www/html
+     ports:
+      - "8080:80"
+
+   devapp:
+     depends_on:
+       - oracledb
+     build:
+       context: ./Dockerfiles/php7cli/
+       dockerfile: Dockerfile
+     image: condr/php7cli
+     links:
+      - oracledb
+     volumes:
+      - ./app:/root/app
+     ports:
+      - "8000:8000"
+
+   apache:
+     build:
+      context: ./Dockerfiles/apache/
+      dockerfile: Dockerfile
+     image: apache
+     links:
+      - app
+     ports:
+      - "80:80"
+
+volumes:
+    www:
+```

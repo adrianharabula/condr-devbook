@@ -14,7 +14,7 @@ Original request here:
 
 ## Contributing
 
-
+Feel free to create issues or pull-requests if you have any problems. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before pushing any changes.
 
 ## License
 

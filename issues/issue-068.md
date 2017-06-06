@@ -10,7 +10,7 @@ A se citi https://laravel.com/docs/5.4/authentication#protecting-routes și a se
 ### Comments
 
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/68#issuecomment-300924629) on: **5/11/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/68#issuecomment-300924629) on: **5/12/2017**
 
 {% raw %}
 Done.

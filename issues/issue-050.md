@@ -1,6 +1,6 @@
 # [\#50 Ajax Samples](https://github.com/adrianharabula/condr/issues/50)
 
-> state: **open** opened by: **adrianharabula** on: **5/6/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/6/2017**
 
 {% raw %}
 **Demo live Ajax**
@@ -30,4 +30,10 @@ another good sample here https://jsfiddle.net/marcusmolchany/vp4k8zxw/
 
 {% raw %}
 alt exemplu http://jsfiddle.net/kvsh7LuL/7/
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/50#issuecomment-306457727) on: **6/6/2017**
+
+{% raw %}
+cam ne-am facut treaba aici
 {% endraw %}

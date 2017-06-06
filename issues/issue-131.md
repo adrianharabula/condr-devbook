@@ -15,7 +15,7 @@ This change is [<img src="https://reviewable.io/review_button.svg" height="34"
 ### Comments
 
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/131#issuecomment-303850387) on: **5/24/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/pull/131#issuecomment-303850387) on: **5/25/2017**
 
 {% raw %}
 

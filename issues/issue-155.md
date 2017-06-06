@@ -16,7 +16,7 @@ I know it's possible, and simple... but... how!?
 În mod ideal, scanăm codul de bare (asta avem), apoi facem un request către api public. Datele obţinute le trimitem printr-un request către aplicaţia noastră care adaugă produsul în baza noastră de date. Şi aşa facem şi noi o treabă calumea cu adăugarea de produse, ea fiind foarte automată.
 {% endraw %}
 ---
-> from: [**elis47**](https://github.com/adrianharabula/condr/issues/155#issuecomment-306067369) on: **6/4/2017**
+> from: [**elis47**](https://github.com/adrianharabula/condr/issues/155#issuecomment-306067369) on: **6/5/2017**
 
 {% raw %}
 done, mai putin partea cu ionic 

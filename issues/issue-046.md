@@ -10,7 +10,7 @@
 ### Comments
 
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/46#issuecomment-300915692) on: **5/11/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/46#issuecomment-300915692) on: **5/12/2017**
 
 {% raw %}
 aa9b968b90d4d436725d4502314535b9d97070a4 File analytics.blade.php is versioned but on the server we use assume-unchanged to update UA Code.

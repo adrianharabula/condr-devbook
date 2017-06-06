@@ -1,6 +1,6 @@
 # [\#132 fix](https://github.com/adrianharabula/condr/pull/132)
 
-> state: **closed** opened by: **adrianharabula** on: **5/24/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/25/2017**
 
 {% raw %}
 

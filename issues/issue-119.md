@@ -1,6 +1,6 @@
 # [\#119 added search bar functionality for products page](https://github.com/adrianharabula/condr/pull/119)
 
-> state: **closed** opened by: **elis47** on: **5/22/2017**
+> state: **closed** opened by: **elis47** on: **5/23/2017**
 
 {% raw %}
 

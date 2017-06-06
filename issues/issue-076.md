@@ -1,6 +1,6 @@
 # [\#76 Add ProductsTableSeeder](https://github.com/adrianharabula/condr/issues/76)
 
-> state: **open** opened by: **adrianharabula** on: **5/11/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/11/2017**
 
 {% raw %}
 Generate random products using
@@ -17,4 +17,10 @@ random barcode generator here https://github.com/fzaninotto/Faker#fakerproviderb
 
 {% raw %}
 A se vedea și #64 pentru logica cum stocăm imaginile, atât în baza de date, cât și pe hdd.
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/76#issuecomment-306458546) on: **6/6/2017**
+
+{% raw %}
+#149 importă produsele, nu mai avem nevoie să le generăm aleatoare.
 {% endraw %}

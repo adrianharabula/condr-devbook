@@ -1,6 +1,6 @@
 # [\#182 Fix CSRF Ajax Security Issue](https://github.com/adrianharabula/condr/issues/182)
 
-> state: **open** opened by: **adrianharabula** on: **6/4/2017**
+> state: **closed** opened by: **adrianharabula** on: **6/4/2017**
 
 {% raw %}
 Avem o problemă, dacă scoatem csrf-ul pentru callurile ajax, requesturile pot fi făcute şi din afara aplicaţiei şi aici apare o problemă.

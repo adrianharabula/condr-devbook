@@ -29,4 +29,11 @@ The Async version
 {% endraw %}
 
 
+### Comments
 
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/104#issuecomment-306455924) on: **6/6/2017**
+
+{% raw %}
+maybe add this to documentation
+{% endraw %}

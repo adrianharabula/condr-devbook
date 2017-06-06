@@ -26,7 +26,7 @@ Main points are:
 @elis47 @Madalina-Buza @Elena-Anghelina 
 {% endraw %}
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/45#issuecomment-300925190) on: **5/11/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/45#issuecomment-300925190) on: **5/12/2017**
 
 {% raw %}
 We used this lately, worked pretty well as a pair programming tool, the issue can be closed.

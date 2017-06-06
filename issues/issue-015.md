@@ -18,7 +18,7 @@ Imaginea https://hub.docker.com/r/almir/webhook/ nu este suficientă. Trebuie in
 Avem endpointul, putem rula un script la accesare endpoint. Dar acum să vedem cum facem exact pull prin webhook.
 {% endraw %}
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/15#issuecomment-294987792) on: **4/18/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/15#issuecomment-294987792) on: **4/19/2017**
 
 {% raw %}
 Avem imaginea cu git, bash și ssh instalate https://hub.docker.com/r/adrianharabula/webhook/
@@ -26,7 +26,7 @@ Avem imaginea cu git, bash și ssh instalate https://hub.docker.com/r/adrianhara
 La accesarea endpointului se poate face pull pe un repo, mai trebuie integrat în proiect, probabil în docker-compose.yml.
 {% endraw %}
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/15#issuecomment-294988870) on: **4/18/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/15#issuecomment-294988870) on: **4/19/2017**
 
 {% raw %}
 Comanda cu care se rulează webhookul:

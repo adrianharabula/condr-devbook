@@ -7,4 +7,11 @@
 {% endraw %}
 
 
+### Comments
 
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/82#issuecomment-306459195) on: **6/6/2017**
+
+{% raw %}
+Asta ar fi frumos, poate reuşim să facem şi asta.
+{% endraw %}

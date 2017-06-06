@@ -1,6 +1,6 @@
 # [\#103 Write docker image for running the site in development mode without without apache](https://github.com/adrianharabula/condr/issues/103)
 
-> state: **open** opened by: **adrianharabula** on: **5/20/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/20/2017**
 
 {% raw %}
 
@@ -76,4 +76,10 @@ docker-compose up -d devapp
 ```
 
 This will create oracle database and run the app with 'php artisan serve' on port 8000. Just access [localhost:8000](http://localhost:8000) and we're done!!!!!
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/103#issuecomment-306456171) on: **6/6/2017**
+
+{% raw %}
+done and documented [here](https://adrianharabula.gitbooks.io/condr/content/pages/docker.html).
 {% endraw %}

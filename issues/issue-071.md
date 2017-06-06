@@ -1,6 +1,6 @@
 # [\#71 Curăță scripturile de inițializare sql, având în vedere că acum folosim migrations](https://github.com/adrianharabula/condr/issues/71)
 
-> state: **open** opened by: **adrianharabula** on: **5/11/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/11/2017**
 
 {% raw %}
 
@@ -476,4 +476,10 @@ END;
 -- WARNINGS                                 1
 
 ```
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/71#issuecomment-306458602) on: **6/6/2017**
+
+{% raw %}
+Done, curăţat.
 {% endraw %}

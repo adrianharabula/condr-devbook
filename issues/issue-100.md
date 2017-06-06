@@ -1,6 +1,6 @@
 # [\#100 Should we put laravel debugbar on production or not?](https://github.com/adrianharabula/condr/issues/100)
 
-> state: **open** opened by: **adrianharabula** on: **5/20/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/20/2017**
 
 {% raw %}
 
@@ -14,4 +14,10 @@
 
 {% raw %}
 Cel mai probabil o să scoatem de pe live debugbarul, dar acum îl lăsăm, cel puţin cât lucrăm la site.
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/100#issuecomment-306456518) on: **6/6/2017**
+
+{% raw %}
+nooooooo. see #192 
 {% endraw %}

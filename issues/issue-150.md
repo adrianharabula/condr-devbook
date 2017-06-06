@@ -1,4 +1,4 @@
-# [\#150 Generate upc for product](https://github.com/adrianharabula/condr/issues/150)
+# [\#150 Generate scannable ean codes for testing purposes](https://github.com/adrianharabula/condr/issues/150)
 
 > state: **open** opened by: **adrianharabula** on: **5/28/2017**
 

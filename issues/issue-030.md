@@ -1,6 +1,6 @@
 # [\#30 "Let's get started" button from home page goes nowhere when logged](https://github.com/adrianharabula/condr/issues/30)
 
-> state: **closed** opened by: **elis47** on: **4/21/2017**
+> state: **closed** opened by: **elis47** on: **4/22/2017**
 
 {% raw %}
 

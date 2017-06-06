@@ -5,8 +5,8 @@
 {% raw %}
 Încă un weekend rămas... tura aceastea chiar e ultimul :)) Mai avem asa:
 
-- [ ] duminica
-- [ ] luni
+- [x] duminica
+- [x] luni
 - [ ] marti
 
 De facut ar mai fi:
@@ -22,4 +22,11 @@ De facut ar mai fi:
 {% endraw %}
 
 
+### Comments
 
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/180#issuecomment-306453539) on: **6/6/2017**
+
+{% raw %}
+Acum lucrez la formularul de contact. Mai durează puţin.
+{% endraw %}

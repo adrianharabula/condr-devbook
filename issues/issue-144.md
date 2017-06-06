@@ -1,6 +1,6 @@
 # [\#144 Weekend Sprint](https://github.com/adrianharabula/condr/issues/144)
 
-> state: **open** opened by: **adrianharabula** on: **5/26/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/26/2017**
 
 {% raw %}
 Nu prea mai avem timp, practic mai sunt 3 zile până la prezentare:
@@ -34,4 +34,11 @@ Cine nu are chef de lucru, am rugămintea să stea deoparte. E liber să facă c
 {% endraw %}
 
 
+### Comments
 
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/144#issuecomment-306458810) on: **6/6/2017**
+
+{% raw %}
+weekend passed
+{% endraw %}

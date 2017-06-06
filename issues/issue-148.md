@@ -1,6 +1,6 @@
 # [\#148 Cuprins documentaţie](https://github.com/adrianharabula/condr/issues/148)
 
-> state: **open** opened by: **adrianharabula** on: **5/28/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/28/2017**
 
 {% raw %}
 Un exemplu complet a ceea ce trebuie noi să avem la sfârşit este un proiect din anii trecuţi ce se află [aici](http://students.info.uaic.ro/~dordorut.calcai/), de pe vremea când corecta buraga priectele.
@@ -62,4 +62,10 @@ Aici aveţi bibliografie pentru cum să faceţi documentaţie bine:
 
 {% raw %}
 Plus [Readme driven development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html)
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/148#issuecomment-306454281) on: **6/6/2017**
+
+{% raw %}
+Avem documentaţia tehnică disponibila online [aici](https://adrianharabula.gitbooks.io/condr/content/).
 {% endraw %}

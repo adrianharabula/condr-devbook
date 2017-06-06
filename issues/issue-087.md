@@ -1,6 +1,6 @@
 # [\#87 Etapa 3 psgbd - discuţii](https://github.com/adrianharabula/condr/issues/87)
 
-> state: **open** opened by: **adrianharabula** on: **5/15/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/15/2017**
 
 {% raw %}
 Etapa III (max 30 puncte - prezentabil in saptamana 23-28 mai de catre cei care au laboratorul joi pe 1 iunie, prezentabil in saptamana 29 mai-02 iunie de catre restul; restul au posibilitatea sa prezinte si in 23-28 daca doresc acest lucru).
@@ -22,4 +22,10 @@ Etapa III (max 30 puncte - prezentabil in saptamana 23-28 mai de catre cei care 
 
 {% raw %}
 avem trigger la delete 2dbe25ddc5a5827b6c5af51a834da0cc32a341ed
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/87#issuecomment-306458670) on: **6/6/2017**
+
+{% raw %}
+it's done!
 {% endraw %}

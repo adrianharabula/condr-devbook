@@ -1,6 +1,6 @@
 # [\#9 Script initializare baza de date](https://github.com/adrianharabula/condr/issues/9)
 
-> state: **closed** opened by: **adrianharabula** on: **4/10/2017**
+> state: **closed** opened by: **adrianharabula** on: **4/11/2017**
 
 {% raw %}
 Ne-am putea inspira din scriptul create_user.sql de la lab1 psgbd

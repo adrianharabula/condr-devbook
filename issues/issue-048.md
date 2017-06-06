@@ -15,7 +15,7 @@ Verify the login/signup functionality.
 ### Comments
 
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/48#issuecomment-299665703) on: **5/6/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/48#issuecomment-299665703) on: **5/7/2017**
 
 {% raw %}
 Tabela users este creată acum după:

@@ -1,6 +1,6 @@
 # [\#56 Creare scripturi database seeder pentru generare de date aleatoare și relevante](https://github.com/adrianharabula/condr/issues/56)
 
-> state: **open** opened by: **adrianharabula** on: **5/7/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/7/2017**
 
 {% raw %}
 Because generatorul curent e făcut ca la n00bi!
@@ -68,4 +68,10 @@ Adițional avem nevoie și de niște factories pentru următoarele:
 
 {% raw %}
 Studiu de caz, care e diferența între clasa seeder și clasa factory https://laracasts.com/discuss/channels/laravel/what-is-the-difference-between-model-factory-and-a-db-seeder
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/56#issuecomment-306458172) on: **6/6/2017**
+
+{% raw %}
+partial abandonat, pentru ca folosim #149 
 {% endraw %}

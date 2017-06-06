@@ -1,6 +1,6 @@
 # [\#165 instrucţiuni pentru noul seeder](https://github.com/adrianharabula/condr/issues/165)
 
-> state: **open** opened by: **adrianharabula** on: **6/2/2017**
+> state: **closed** opened by: **adrianharabula** on: **6/2/2017**
 
 {% raw %}
 e cineva pe aici ?

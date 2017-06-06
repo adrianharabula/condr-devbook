@@ -1,6 +1,6 @@
 # [\#63 Generare schema UML a bazei de date](https://github.com/adrianharabula/condr/issues/63)
 
-> state: **open** opened by: **adrianharabula** on: **5/7/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/7/2017**
 
 {% raw %}
 Momentan avem [asta](https://github.com/adrianharabula/condr/blob/master/docs/00_database_sketch_v2.png) dar lasă de dorit și nu mai reflectă ultimele schimbări din baza de date. Tre refăcut tot frumos.
@@ -34,5 +34,13 @@ Avem așa:
 
 {% raw %}
 Avem ultima versiune aici [Relational_9mai_latest.pdf](https://github.com/adrianharabula/condr/files/985867/Relational_9mai_latest.pdf)
+
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/63#issuecomment-306458045) on: **6/6/2017**
+
+{% raw %}
+Ultima versiune aici. 
+[Relational_1.pdf](https://github.com/adrianharabula/condr/files/1054784/Relational_1.pdf)
 
 {% endraw %}

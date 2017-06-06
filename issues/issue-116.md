@@ -30,3 +30,9 @@ pentru a selecta anumite caracteristici
 ![image](https://cloud.githubusercontent.com/assets/2271038/26344745/5d2dfa8a-3fa9-11e7-9e6d-0f03af0141ca.png)
 
 {% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/116#issuecomment-306456017) on: **6/6/2017**
+
+{% raw %}
+vedem, s-ar mai putea lucra aici, dar vedem in functie de timpul disponibil
+{% endraw %}

@@ -1,6 +1,6 @@
 # [\#145 Implementing Repository Pattern](https://github.com/adrianharabula/condr/issues/145)
 
-> state: **open** opened by: **adrianharabula** on: **5/26/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/26/2017**
 
 {% raw %}
 app/Repositories/Products.php
@@ -316,4 +316,10 @@ class ProductController extends Controller
 
 {% raw %}
 thanks!!! https://github.com/adrianharabula/condr/blob/953620aad8b08178940ab7934af6a798b1189c16/app/app/Repositories/ProductRepository.php
+{% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/145#issuecomment-306455116) on: **6/6/2017**
+
+{% raw %}
+Done and documented [here](https://adrianharabula.gitbooks.io/condr/content/pages/repository.html).
 {% endraw %}

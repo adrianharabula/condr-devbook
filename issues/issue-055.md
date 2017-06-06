@@ -1,6 +1,6 @@
 # [\#55 De creat migrările pentru toată baza de date](https://github.com/adrianharabula/condr/issues/55)
 
-> state: **closed** opened by: **adrianharabula** on: **5/6/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/7/2017**
 
 {% raw %}
 Pe lângă scripturile plsql făcute până acum următorul pas este să creăm baza de date din migrări. Dacă codul îl versionăm, de ce să nu facem la fel și cu baza de date? Acest cod poate fi folosit și pentru a crea tabelele în altă baze de date, fără să schimbăm nimic. Practic putem trece pe MySQL în secunde, fără să modificăm nicio linie de cod. Probabil nu vom face asta, dar cine știe.

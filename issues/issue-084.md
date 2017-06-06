@@ -10,7 +10,7 @@
 ### Comments
 
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/84#issuecomment-301339830) on: **5/14/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/84#issuecomment-301339830) on: **5/15/2017**
 
 {% raw %}
 We've got [these](https://github.com/adrianharabula/condr/tree/dd9bd093983f4465338372bb60e1b3018807bd4b/Dockerfiles/oracledb/sqlscripts) scripts working on first time initialization.

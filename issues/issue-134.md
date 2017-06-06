@@ -11,7 +11,7 @@
 ### Comments
 
 ---
-> from: [**elis47**](https://github.com/adrianharabula/condr/issues/134#issuecomment-306067278) on: **6/4/2017**
+> from: [**elis47**](https://github.com/adrianharabula/condr/issues/134#issuecomment-306067278) on: **6/5/2017**
 
 {% raw %}
 situatia asta nu se va intampla datorita seederului, si nu mai extindem acum aplicatia prin a-i da userului posibilitatea de a adauga grupuri; sa ne focusam pe restul bug-urilor 👍 

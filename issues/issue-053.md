@@ -1,6 +1,6 @@
 # [\#53 Bug pagina mydetails atunci când ai mai mulți useri cu același username](https://github.com/adrianharabula/condr/issues/53)
 
-> state: **closed** opened by: **adrianharabula** on: **5/6/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/7/2017**
 
 {% raw %}
 Nu vom face username unic așa cum am discutat azi pentru că nu așa se face. Vom modifica codul după structura existentă, nu vom modifica structura după codul nostru.
@@ -16,7 +16,7 @@ Nu mă voi ocupa de asta pentru că nu e o prioritate.
 ### Comments
 
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/53#issuecomment-300925274) on: **5/11/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/53#issuecomment-300925274) on: **5/12/2017**
 
 {% raw %}
 Irelevant, not enough time to fix broken old code.

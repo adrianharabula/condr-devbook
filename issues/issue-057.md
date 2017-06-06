@@ -48,7 +48,7 @@ Pentru a crea baza de date pentru aplicație se rulează
 Apoi se fac migrările. Și ar trebui să meargă!!!!!!!
 {% endraw %}
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/57#issuecomment-300917885) on: **5/11/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/57#issuecomment-300917885) on: **5/12/2017**
 
 {% raw %}
 Update inițializare cu tot cu funcția purge #62 
@@ -58,7 +58,7 @@ sqlplus condr/condr @00-purgeProcedure.sql
 ```
 {% endraw %}
 ---
-> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/57#issuecomment-300923990) on: **5/11/2017**
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/57#issuecomment-300923990) on: **5/12/2017**
 
 {% raw %}
 În sfârșit închidem!!! De necrezut!

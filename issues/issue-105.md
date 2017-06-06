@@ -33,3 +33,10 @@ Updated version using post-commit hook.
 ![image](https://cloud.githubusercontent.com/assets/2271038/26279619/4ad84154-3dc1-11e7-8824-1d9b79fce162.png)
 
 {% endraw %}
+---
+> from: [**adrianharabula**](https://github.com/adrianharabula/condr/issues/105#issuecomment-306412509) on: **6/6/2017**
+
+{% raw %}
+![image](https://cloud.githubusercontent.com/assets/2271038/26819499/d14e082a-4aa7-11e7-9e8b-7b7387eadee0.png)
+
+{% endraw %}

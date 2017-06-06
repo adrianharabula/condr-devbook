@@ -1,6 +1,6 @@
 # [\#112 Key points for presentation on 22 may](https://github.com/adrianharabula/condr/issues/112)
 
-> state: **open** opened by: **adrianharabula** on: **5/21/2017**
+> state: **closed** opened by: **adrianharabula** on: **5/21/2017**
 
 {% raw %}
 Câteva puncte despre care putem vorbi:

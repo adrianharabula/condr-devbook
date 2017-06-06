@@ -1,6 +1,8 @@
 ## Database schema
 
-![schema](../images/schema_latest.png)
+![schema_part1](../images/schema_latest_part1.png)
+![schema_part2](../images/schema_latest_part2.png)
+![schema_part3](../images/schema_latest_part3.png)
 
 ### Initialization scripts
 

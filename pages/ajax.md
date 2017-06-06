@@ -1,4 +1,4 @@
-## How we make ajax calls
+## How we make AJAX calls
 
 ### CSRF Token for AJAX queries
 ```js

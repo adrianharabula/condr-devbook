@@ -5,6 +5,7 @@
 * [Introduction](README.md)
 * [Authors](AUTHORS.md)
 * [Contributing](CONTRIBUTING.md)
+* [License](LICENSE.md)
 
 ## Application
 
@@ -221,3 +222,7 @@
  * [Pull #185 - fix upc array error](issues/issue-185.md)
  * [Pull #186 - fix upc array error](issues/issue-186.md)
  * [Pull #187 - fix upc array error](issues/issue-187.md)
+
+---
+ * [Thanks](pages/thanks.md)
+ 

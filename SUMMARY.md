@@ -13,10 +13,13 @@
  * [Many To Many Polymorphic](pages/polymorphic.md)
  * [Database Query Example](pages/relationships.md)
  * [App URL Routing](pages/routes.md)
+ * [Repository pattern](pages/repository.md)
+ * [AJAX Calls](pages/ajax.md)
 
 ## API's used to gather data
- * [upcdatabase.org](pages/upcdatabase.md)
+
  * [upcitemdb.com](pages/upcitemdb.md)
+ * [upcdatabase.org](pages/upcdatabase.md)
 
 ## Server
 
@@ -27,6 +30,7 @@
 ## Byproducts
  * [php7-oci](pages/php7-oci.md)
  * [php7cli-oci](pages/php7cli-oci.md)
+ * [super-simple-oci-orm](pages/oci-orm.md)
 
 ## Issues
 
@@ -217,4 +221,3 @@
  * [Pull #185 - fix upc array error](issues/issue-185.md)
  * [Pull #186 - fix upc array error](issues/issue-186.md)
  * [Pull #187 - fix upc array error](issues/issue-187.md)
- 

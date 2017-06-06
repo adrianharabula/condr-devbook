@@ -198,3 +198,103 @@ Response body:
   ]
 }
 ```
+
+## How we fetch this API
+
+Make a request to the API and store the result
+```php
+        $client = new \GuzzleHttp\Client(array(
+            'curl' => array(
+                CURLOPT_SSL_VERIFYPEER => env('CURLOPT_SSL_VERIFYPEER') ,
+            ) ,
+        ));
+        $request = $client->request('GET', 'https://api.upcitemdb.com/prod/trial/lookup', ['query' => 'upc=' . $request->upc_code]);
+        $res = $request->getBody();
+        $data = json_decode($res, true);
+        $items = $data['items'];
+```
+
+We then fetch downloaded data, parsing each product in result.
+```php
+        // print_r($items);
+
+        foreach($items as $item)
+        {
+            $product = \App\Product::firstOrNew(['ean_code' => $item['ean']]);
+            $product->name = $item['title'];
+            $product->brand = $item['brand'];
+            $product->description = $item['description'];
+            $product->lowest_recorded_price = $item['lowest_recorded_price'];
+
+            // check if an array of images exists first
+            // fix for https://github.com/adrianharabula/condr/issues/169
+
+            if ($item['images'])
+            {
+                $product->image_url = $item['images'][0];
+            }
+
+            // insert category "none" if the user doesn't specify it
+
+            $product->category_id = '9';
+            $product->save();
+```
+
+After saving product to database, attach characteristics to it.
+```php
+            if ($item['color'])
+            {
+                $cistic = \App\Characteristic::firstOrCreate(['name' => 'color']);
+
+                // alternative way of inserting custom data into pivot
+                // $pivot_data = ['cvalue' => $item['color']];
+                // $data_to_sync[$product->id] = $pivot_data;
+                // $cistic->products()->syncWithoutDetaching($data_to_sync);
+
+                $cistic->products()->syncWithoutDetaching([$product->id => ['cvalue' => $item['color']]]);
+                $cistic->save();
+            }
+
+            if ($item['size'])
+            {
+                $cistic = \App\Characteristic::firstOrCreate(['name' => 'size']);
+                $cistic->products()->syncWithoutDetaching([$product->id => ['cvalue' => $item['size']]]);
+                $cistic->save();
+            }
+
+            if ($item['dimension'])
+            {
+                $cistic = \App\Characteristic::firstOrCreate(['name' => 'dimension']);
+                $cistic->products()->syncWithoutDetaching([$product->id => ['cvalue' => $item['dimension']]]);
+                $cistic->save();
+            }
+
+            if ($item['weight'])
+            {
+                $cistic = \App\Characteristic::firstOrCreate(['name' => 'weight']);
+                $cistic->products()->syncWithoutDetaching([$product->id => ['cvalue' => $item['weight']]]);
+                $cistic->save();
+            }
+```
+
+Lastly check if the product has any offers and attach them to using one to many association.
+```php
+            foreach($item['offers'] as $offer)
+            {
+                $offer_model = \App\Offer::firstOrNew(['merchant' => $offer['merchant'], 'product_id' => $product->id]);
+                $offer_model->domain = $offer['domain'];
+                $offer_model->title = $offer['title'];
+                $offer_model->currency = $offer['currency'];
+                $offer_model->price = $offer['price'];
+                $offer_model->shipping = $offer['shipping'];
+                $offer_model->condition = $offer['condition'];
+                $offer_model->availability = $offer['availability'];
+                $offer_model->shop_link = $offer['link'];
+                $offer_model->remote_updated_at = $offer['updated_t'];
+                // associate offer with product
+                $offer_model->product()->associate($product);
+                $offer_model->save();
+            }
+        }
+
+```
